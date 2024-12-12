@@ -1,0 +1,43 @@
+name: zb
+
+on:
+  schedule:
+    - cron: '0 22,3,9 * * *'
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+    
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+      - name: Install bs4
+        run: pip3 install bs4
+      - name: Install playwright
+        run: pip3 install playwright
+      - name: Install requests
+        run: pip3 install requests     
+      - name: Install playwright install
+        run: playwright install
+      - name: Install datetime
+        run: pip install datetime
+
+      - name: Run IPTV
+        run: python ${{ github.workspace }}/ipzb.py
+        
+      - name: 提交更改
+        run: |
+          git config --local user.email "ahua0321@github.com"
+          git config --local user.name "ahua"
+          git add .
+          git commit *.txt -m "Add generated file"          
+          git push -f

@@ -23,7 +23,7 @@ jobs:
         run: pip install selenium requests futures eventlet     
           
       - name: Run IPJD
-        run: python ${{ github.workspace }}/idj2.py
+        run: python ${{ github.workspace }}/jdj2.py
               
       - name: 提交更改
         run: |

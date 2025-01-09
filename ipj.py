@@ -88,10 +88,10 @@ for url in urls:
                                 name = name.replace("CCTV5+体育赛事", "CCTV5+")
                                 name = name.replace("CCTV5+体育", "CCTV5+")
                                 results.append(f"{name},{urld}")
+                except:
+                    continue
             except:
                 continue
-        except:
-            continue
     except:
         continue
 

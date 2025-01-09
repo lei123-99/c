@@ -24,7 +24,7 @@ for url in urls:
         urls = set(urls_all)  # 去重得到唯一的URL列表
         # 遍历网址列表，获取JSON文件并解析
         for url in urls:
-        try:
+            try:
                 # 发送GET请求获取JSON文件，设置超时时间为0.5秒
                 json_url = f'{url}//iptv/live/1000.json?key=txiptv'
                 response = requests.get(json_url, timeout=5)

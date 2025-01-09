@@ -29,7 +29,6 @@ def modify_urls(url):
 
     return modified_urls
 
-
 def is_url_accessible(url):
     try:
         response = requests.get(url, timeout=0.5)
@@ -38,7 +37,6 @@ def is_url_accessible(url):
     except requests.exceptions.RequestException:
         pass
     return None
-
 
 results = []
 

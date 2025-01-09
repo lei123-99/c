@@ -96,9 +96,6 @@ for url in urls:
         continue
 
 results = set(results)   # 去重得到唯一的URL列表
-results = sorted(results)
-
-
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

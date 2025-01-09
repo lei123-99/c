@@ -809,15 +809,8 @@ for result in results:
         channel_name, channel_url = result.split(',')
         channels.append((channel_name, channel_url))
 
-def channel_key(channel_name):
-    match = re.search(r'\d+', channel_name)
-    if match:
-        return int(match.group())
-    else:
-        return float('inf')  # 返回一个无穷大的数字作为关键字
-
 # 对频道进行排序
-results.sort(key=lambda x: channel_key(x[0]))
+results.sorted(result,key=lambda x: (x[0]))
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

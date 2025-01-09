@@ -805,14 +805,6 @@ for url in valid_urls:
     except:
         continue
 
-channels = []
-
-for result in results:
-    line = result.strip()
-    if result:
-        channel_name, channel_url = result.split(',')
-        channels.append((channel_name, channel_url))
-
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('澶棰戦亾,#genre#\n')
     for result in results:

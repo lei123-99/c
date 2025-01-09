@@ -263,7 +263,7 @@ for result in results:
         channel_name, channel_url = result.split(',')
         channels.append((channel_name, channel_url))
 
-results = sorted(results)
+results = sorted(results,key=lambda x: (x[0]))
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

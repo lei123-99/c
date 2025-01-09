@@ -85,7 +85,7 @@ for url in valid_urls:
     try:
         json_url = f"{url}"
         response = requests.get(json_url, timeout=0.5)
-        json_data = response.json()
+        json_data = response.content.decode('utf-8')
 
         try:
             # 按行分割数据

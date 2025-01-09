@@ -30,21 +30,21 @@ for url in urls:
                 response = requests.get(json_url, timeout=5)
                 json_data = response.content.decode('utf-8')
 
-               try:
-                   # 解析JSON文件，获取name和url字段
-                  for item in json_data['data']:
-                      if isinstance(item, dict):
-                          name = item.get('name')
-                          urlx = item.get('url')
-                          if ',' in urlx:
-                              urlx=f"aaaaaaaa"
-                             #if 'http' in urlx or 'udp' in urlx or 'rtp' in urlx:
-                              if 'http' in urlx:
-                              urld = f"{urlx}"
-                        else:
-                              urld = f"{url_x}{urlx}"
+                try:
+                    # 解析JSON文件，获取name和url字段
+                    for item in json_data['data']:
+                        if isinstance(item, dict):
+                            name = item.get('name')
+                            urlx = item.get('url')
+                            if ',' in urlx:
+                                urlx=f"aaaaaaaa"
+                                #if 'http' in urlx or 'udp' in urlx or 'rtp' in urlx:
+                                if 'http' in urlx:
+                                urld = f"{urlx}"
+                                else:
+                                urld = f"{url_x}{urlx}"
 
-                        if name and urlx:
+                            if name and urlx:
                             # 删除特定文字
                             name = name.replace("cctv", "CCTV")
                             name = name.replace("中央", "CCTV")

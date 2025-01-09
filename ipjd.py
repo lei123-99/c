@@ -386,6 +386,7 @@ urls = [
 "http://171.8.75.1:8011",
 "http://175.0.32.1:8081",
 "http://175.0.35.1:8081",
+"http://175.10.230.1:8081",
 "http://175.16.149.1:9901",
 "http://175.16.151.1:9901",
 "http://175.16.153.1:9901",
@@ -816,6 +817,7 @@ def channel_key(channel_name):
         return float('inf')  # 返回一个无穷大的数字作为关键字
 
 # 对频道进行排序
+results.sort(key=lambda x: (x[0], -float(x[2].split()[0])))
 results.sort(key=lambda x: channel_key(x[0]))
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:

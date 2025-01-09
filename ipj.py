@@ -7,7 +7,6 @@ import threading
 from queue import Queue
 import eventlet
 
-
 urls = [
 "http://1.192.12.1:9901",
 "http://1.192.248.1:9901",

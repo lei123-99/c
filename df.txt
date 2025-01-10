@@ -1,0 +1,4 @@
+地方频道,#genre#
+长治综合频道,rtmp://live.njgdmm.com/changzhi/cztv1#http://live.njgdmm.com/changzhi/cztv1.m3u8
+长治公共频道,rtmp://live.njgdmm.com/changzhi/cztv2#http://live.njgdmm.com/changzhi/cztv2.m3u8
+武乡新闻综合,http://uzoiczhh.live.sxmty.com/live/hls/0d41f1480c4042d49927858f01fde707/53130407737b417b9a6259b57246bae3.m3u8#http://60.220.198.84:81/0.m3u8

@@ -185,22 +185,6 @@ def channel_key(channel_name):
 results.sort(key=lambda x: channel_key(x[0]))
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
-    file.write('央视频道,#genre#\n')
     for result in results:
-        channel_name, channel_url = result.split(',',1)
-        if 'CCTV' in channel_name or 'CHC' in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
-    file.write('卫视频道,#genre#\n')
-    for result in results:
-        channel_name, channel_url = result.split(',',1)
-        if '卫视' in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
-    file.write('其他频道,#genre#\n')
-    for result in results:
-        channel_name, channel_url = result.split(',',1)
-        if 'CCTV' not in channel_name and '卫视' not in channel_name and '测试' not in channel_name and 'CHC' not in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
-                
-with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
-    data = in_file.read()
-    file.write(data)
+        if result:
+            file.write(result + "\n")

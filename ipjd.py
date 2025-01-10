@@ -174,23 +174,82 @@ for url in valid_urls:
     except:
         continue
         
-keywords = ['CCTV4K','CCTV1','CCTV2']  # 需要提取的关键字列表
+keywords = ['CCTV1',
+            'CCTV2',
+            'CCTV3',
+            'CCTV4,',
+            'CCTV5',
+            'CCTV5+',
+            'CCTV6',
+            'CCTV7',
+            'CCTV8',
+            'CCTV9',
+            '家庭影院',
+            '影迷电影',
+            '动作电影',
+            '兵器科技',
+            '第一剧场',
+            '风云足球',
+            '风云音乐',
+            '风云剧场',
+            '高尔夫·网球',
+            '世界地理',
+            '怀旧剧场',
+            '央视台球',
+            '文化精品']  # 需要提取的关键字列表
 pattern = '|'.join(keywords)  # 创建正则表达式模式，匹配任意一个关键字
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')
     for result in results:
         if re.search(pattern, result):  # 如果行中有任意关键字
             file.write(f"{result}\n")
+keywords = ['黑龙江卫视',
+            '吉林卫视',
+            '辽宁卫视',
+            '内蒙古卫视',
+            '北京卫视',
+            '天津卫视',
+            '河北卫视',
+            '河南卫视',
+            '山东卫视',
+            '山西卫视',
+            '东方卫视',
+            '浙江卫视',
+            '江苏卫视',
+            '江西卫视',
+            '东南卫视',
+            '广东卫视',
+            '广西卫视',
+            '安徽卫视',
+            '湖北卫视',
+            '湖南卫视',
+            '新疆卫视',
+            '青海卫视',
+            '甘肃卫视',
+            '宁夏卫视',
+            '陕西卫视',
+            '西藏卫视',
+            '四川卫视',
+            '重庆卫视',
+            '贵州卫视',
+            '云南卫视',
+            '海南卫视',
+            '深圳卫视',
+            '三沙卫视',
+            '兵团卫视',
+            '凤凰资讯',
+            '凤凰中文']  # 需要提取的关键字列表
+pattern = '|'.join(keywords)  # 创建正则表达式模式，匹配任意一个关键字            
     file.write('卫视频道,#genre#\n')
     for result in results:
-        channel_name, channel_url = result.split(',',1)
-        if '卫视' in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
+        if re.search(pattern, result):  # 如果行中有任意关键字
+            file.write(f"{result}\n")
+keywords = ['气象','车迷','电影','都市','汽摩']  # 需要提取的关键字列表
+pattern = '|'.join(keywords)  # 创建正则表达式模式，匹配任意一个关键字            
     file.write('其他频道,#genre#\n')
     for result in results:
-        channel_name, channel_url = result.split(',',1)
-        if 'CCTV' not in channel_name and '卫视' not in channel_name and '测试' not in channel_name and 'CHC' not in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
+        if re.search(pattern, result):  # 如果行中有任意关键字
+            file.write(f"{result}\n")
                 
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()

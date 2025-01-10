@@ -187,4 +187,4 @@ results.sort(key=lambda x: channel_key(x[0]))
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     for result in results:
         if result:
-            file.write(result + "\n")
+            file.write(results + "\n")

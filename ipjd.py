@@ -173,6 +173,8 @@ for url in valid_urls:
             continue
     except:
         continue
+        
+results = []
 
 def channel_key(channel_name):
     match = re.search(r'\d+', channel_name)

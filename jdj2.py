@@ -8,10 +8,29 @@ from queue import Queue
 import eventlet
 
 urls = [
-"http://110.183.51.1:808",
-"http://110.183.53.1:808",    
-"http://60.220.147.1:808",
-"http://183.184.104.1:8088"
+"http://1.192.12.1:9901",
+"http://1.192.248.1:9901",
+"http://1.194.52.1:10086",
+"http://1.195.111.1:11190",
+"http://1.195.130.1:9901",
+"http://1.195.131.1:9901",
+"http://1.195.62.1:9901",
+"http://1.196.192.1:9901",
+"http://1.196.252.1:9901",
+"http://1.196.55.1:9901",
+"http://1.197.153.1:9901",
+"http://1.197.203.1:9901",
+"http://1.197.249.1:9901",
+"http://1.197.250.1:9901",
+"http://1.197.251.1:9901",
+"http://1.197.82.1:9901",
+"http://1.197.83.1:9901",
+"http://1.197.84.1:9901",
+"http://1.198.30.1:9901",
+"http://1.198.67.1:9901",
+"http://1.199.234.1:9901",
+"http://1.199.235.1:9901",
+"http://61.54.14.1:9901"
     ]
 
 def modify_urls(url):
@@ -21,7 +40,7 @@ def modify_urls(url):
     base_url = url[:ip_start_index]  # http:// or https://
     ip_address = url[ip_start_index:ip_end_index]
     port = url[ip_end_index:]
-    ip_end = "/ZHGXTV/Public/json/live_interface.txt"
+    ip_end = "/iptv/live/1000.json?key=txiptv"
     for i in range(1, 256):
         modified_ip = f"{ip_address[:-1]}{i}"
         modified_url = f"{base_url}{modified_ip}{port}{ip_end}"
@@ -77,30 +96,31 @@ for url in valid_urls:
 # 遍历网址列表，获取JSON文件并解析
 for url in valid_urls:
     try:
-        # 发送GET请求获取JSON文件，设置超时时间为0.5秒
+        # 发送GET请求获取JSON文件，设置超时时间为0.5秒        
         json_url = f"{url}"
         response = requests.get(json_url, timeout=0.5)
-        json_data = response.content.decode('utf-8')
+        json_data = response.json()
 
         try:
-            # 按行分割数据
-            lines = json_data.split('\n')
-            for line in lines:
-                line = line.strip()
-                if line:
-                    name, channel_url = line.split(',',1)
-                    urls = channel_url.split('/', 3)
-                    url_data = json_url.split('/', 3)
-                    if len(urls) >= 4:
-                        urld = (f"{urls[0]}//{url_data[2]}/{urls[3]}")
+            # 解析JSON文件，获取name和url字段
+            for item in json_data['data']:
+                if isinstance(item, dict):
+                    name = item.get('name')
+                    urlx = item.get('url')
+                    if ',' in urlx:
+                        urlx=f"aaaaaaaa"
+                    #if 'http' in urlx or 'udp' in urlx or 'rtp' in urlx:
+                    if 'http' in urlx:
+                        urld = f"{urlx}"
                     else:
-                        urld = (f"{urls[0]}//{url_data[2]}")
-                    if name and urld:
+                        urld = f"{url_x}{urlx}"
+
+                    if name and urlx:
                         # 删除特定文字
                         name = name.replace("cctv", "CCTV")
                         name = name.replace("中央", "CCTV")
                         name = name.replace("央视", "")
-                        name = name.replace("高清", "")
+                        name = name.replace("高清", "")                        
                         name = name.replace("HD", "")
                         name = name.replace("标清", "")
                         name = name.replace("频道", "")
@@ -115,7 +135,7 @@ for url in valid_urls:
                         name = name.replace("CCTV2财经", "CCTV2")
                         name = name.replace("CCTV3综艺", "CCTV3")
                         name = name.replace("CCTV4国际", "CCTV4")
-                        name = name.replace("CCTV4中文国际", "CCTV4")
+                        name = name.replace("CCTV4中文国际", "CCTV4")                        
                         name = name.replace("CCTV5体育", "CCTV5")
                         name = name.replace("CCTV6电影", "CCTV6")
                         name = name.replace("CCTV7军事", "CCTV7")
@@ -138,12 +158,19 @@ for url in valid_urls:
                         name = name.replace("CCTV5+体育赛视", "CCTV5+")
                         name = name.replace("CCTV5+体育赛事", "CCTV5+")
                         name = name.replace("CCTV5+体育", "CCTV5+")
-                        if "udp://" not in urld:
-                            results.append(f"{name},{urld}")
+                        results.append(f"{name},{urld}")
         except:
             continue
     except:
         continue
+
+channels = []
+
+for result in results:
+    line = result.strip()
+    if result:
+        channel_name, channel_url = result.split(',')
+        channels.append((channel_name, channel_url))
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

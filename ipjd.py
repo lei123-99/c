@@ -181,7 +181,7 @@ with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')
     for result in results:
         if re.search(pattern, result):  # 如果行中有任意关键字
-            file.write(f"{channel_name},{channel_url}\n")
+            file.write(f"{result}\n")
     file.write('卫视频道,#genre#\n')
     for result in results:
         channel_name, channel_url = result.split(',',1)

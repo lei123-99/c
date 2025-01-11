@@ -44,12 +44,11 @@ src_urls = [
 "http://221.193.168.1:9901",
 "http://61.54.14.1:9901"
     ]
-src_urls_test = src_urls[31:36]
 
+src_urls_test = src_urls[31:36]
 
 # 配置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
-
 
 def modify_urls(src_url):
     # 正则替换IP第四位
@@ -61,7 +60,6 @@ def modify_urls(src_url):
         modified_url = f"{base_url}{request_param}"
         modified_urls.append(modified_url)
     return set(modified_urls)
-
 
 async def check_url_code(url):
     # 校验url是否可用
@@ -76,7 +74,6 @@ async def check_url_code(url):
                         return None
         except Exception:
             return None
-
 
 async def get_valid_urls() -> list:
     # 获取所有有效的url
@@ -97,7 +94,6 @@ async def get_valid_urls() -> list:
 
     logging.info(f"共找到 {len(valid_urls)} 个有效的URL")
     return valid_urls
-
 
 def replace_name(name: str) -> str:
     name = name.replace("cctv", "CCTV")
@@ -186,7 +182,6 @@ async def get_iptv_name_m3u8s() -> List[Tuple[str, str, str]]:
             continue
     return m3u8_list
 
-
 async def download_ts(m3u8_list: List[Tuple[str, str, str]]) -> Tuple[
     List[Tuple[str, str, str]], List[Tuple[str, str]]]:
     """
@@ -250,7 +245,6 @@ async def download_ts(m3u8_list: List[Tuple[str, str, str]]) -> Tuple[
 
     return results, error_channels
 
-
 def results_sort(results) -> list:
     # 频道进行排序
     def channel_key(channel_name):
@@ -263,7 +257,6 @@ def results_sort(results) -> list:
     results.sort(key=lambda x: (x[0], -float(x[2].split()[0])))
     results.sort(key=lambda x: channel_key(x[0]))
     return results
-
 
 def write_itv_txt(results):
     # 写出txt类型
@@ -321,7 +314,6 @@ async def start():
     logging.info(f"错误频道: {len(error_channels)}个.")
     end_time = time.time()
     logging.info(f"耗时: {end_time - start_time}s.")
-
 
 if __name__ == '__main__':
     asyncio.run(start())

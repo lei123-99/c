@@ -172,12 +172,15 @@ for url in valid_urls:
 
 channels = []
 
+results = []
+
 for result in results:
     line = result.strip()
     if result:
         channel_name, channel_url = result.split(',')
         channels.append((channel_name, channel_url))
-       
+        results.append((channel_name, channel_url))
+
 def channel_key(channel_name):
     match = re.search(r'\d+', channel_name)
     if match:

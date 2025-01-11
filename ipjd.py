@@ -268,8 +268,7 @@ def results_sort(results) -> list:
 def write_itv_txt(results):
     # 写出txt类型
     results_sort(results)
-    with open("itvlist.txt", 'w', encoding='utf-8') as file:
-       with open("iptv.txt", 'w', encoding='utf-8') as file:
+    with open("iptv.txt", 'w', encoding='utf-8') as file:
     channel_counters = {}
     file.write('央视频道,#genre#\n')
     for result in results:

@@ -269,49 +269,49 @@ def write_itv_txt(results):
     # 写出txt类型
     results_sort(results)
     with open("iptv.txt", 'w', encoding='utf-8') as file:
-    channel_counters = {}
-    file.write('央视频道,#genre#\n')
-    for result in results:
-        channel_name, channel_url = result.split(',',1)
-        if 'CCTV' in channel_name or 'CHC' in channel_name or '地理' in channel_name or '风云' in channel_name:
-            if channel_name in channel_counters:
-                if channel_counters[channel_name] >= result_counter:
-                    continue
+        channel_counters = {}
+        file.write('央视频道,#genre#\n')
+        for result in results:
+            channel_name, channel_url, speed = result
+            if 'CCTV' in channel_name:
+                if channel_name in channel_counters:
+                    if channel_counters[channel_name] >= result_counter:
+                        continue
+                    else:
+                        file.write(f"{channel_name},{channel_url}\n")
+                        channel_counters[channel_name] += 1
                 else:
                     file.write(f"{channel_name},{channel_url}\n")
-                    channel_counters[channel_name] += 1
-            else:
-                file.write(f"{channel_name},{channel_url}\n")
-                channel_counters[channel_name] = 1
-    channel_counters = {}
-    file.write('卫视频道,#genre#\n')
-    for result in results:
-        channel_name, channel_url = result.split(',',1)
-        if '卫视' in channel_name or '凤凰' in channel_name:
-            if channel_name in channel_counters:
-                if channel_counters[channel_name] >= result_counter:
-                    continue
+                    channel_counters[channel_name] = 1
+        channel_counters = {}
+        file.write('卫视频道,#genre#\n')
+        for result in results:
+            channel_name, channel_url, speed = result
+            if '卫视' in channel_name:
+                if channel_name in channel_counters:
+                    if channel_counters[channel_name] >= result_counter:
+                        continue
+                    else:
+                        file.write(f"{channel_name},{channel_url}\n")
+                        channel_counters[channel_name] += 1
                 else:
                     file.write(f"{channel_name},{channel_url}\n")
-                    channel_counters[channel_name] += 1
-            else:
-                file.write(f"{channel_name},{channel_url}\n")
-                channel_counters[channel_name] = 1
-    channel_counters = {}
-    file.write('其他频道,#genre#\n')
-    for result in results:
-        channel_name, channel_url = result.split(',',1)
-        if '乐途' in channel_name or '都市' in channel_name or '车迷' in channel_name or '汽摩' in channel_name or '旅游' in channel_name:
-            if channel_name in channel_counters:
-                if channel_counters[channel_name] >= result_counter:
-                    continue
+                    channel_counters[channel_name] = 1
+        channel_counters = {}
+        file.write('其他频道,#genre#\n')
+        for result in results:
+            channel_name, channel_url, speed = result
+            if 'CCTV' not in channel_name and '卫视' not in channel_name and '测试' not in channel_name:
+                if channel_name in channel_counters:
+                    if channel_counters[channel_name] >= result_counter:
+                        continue
+                    else:
+                        file.write(f"{channel_name},{channel_url}\n")
+                        channel_counters[channel_name] += 1
                 else:
                     file.write(f"{channel_name},{channel_url}\n")
-                    channel_counters[channel_name] += 1
-            else:
-                file.write(f"{channel_name},{channel_url}\n")
-                channel_counters[channel_name] = 1
-      
+                    channel_counters[channel_name] = 1
+
 async def start():
     start_time = time.time()
     m3u8_list = await get_iptv_name_m3u8s()

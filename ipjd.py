@@ -273,7 +273,7 @@ def write_itv_txt(results):
         file.write('央视频道,#genre#\n')
         for result in results:
             channel_name, channel_url, speed = result
-            if 'CCTV' in channel_name:
+            if 'CCTV' in channel_name or 'CHC' in channel_name or '地理' in channel_name or '风云' in channel_name:
                 if channel_name in channel_counters:
                     if channel_counters[channel_name] >= result_counter:
                         continue
@@ -287,7 +287,7 @@ def write_itv_txt(results):
         file.write('卫视频道,#genre#\n')
         for result in results:
             channel_name, channel_url, speed = result
-            if '卫视' in channel_name:
+            if '卫视' in channel_name or '凤凰' in channel_name:
                 if channel_name in channel_counters:
                     if channel_counters[channel_name] >= result_counter:
                         continue
@@ -301,7 +301,7 @@ def write_itv_txt(results):
         file.write('其他频道,#genre#\n')
         for result in results:
             channel_name, channel_url, speed = result
-            if 'CCTV' not in channel_name and '卫视' not in channel_name and '测试' not in channel_name:
+            if '乐途' in channel_name or '都市' in channel_name or '车迷' in channel_name or '汽摩' in channel_name or '旅游' in channel_name:
                 if channel_name in channel_counters:
                     if channel_counters[channel_name] >= result_counter:
                         continue

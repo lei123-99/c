@@ -13,7 +13,7 @@ min_network_segment = 1
 # 网段最大范围
 max_network_segment = 256
 # 每个频道需要的个数
-result_counter = 8
+result_counter = 15
 # 控制异步并发的信号量
 semaphore = asyncio.Semaphore(200)
 # 请求等待时间, 并发量越高时间要越长

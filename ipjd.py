@@ -196,7 +196,6 @@ with open("iptv.txt", 'w', encoding='utf-8') as file:
     for result in results:
         channel_name, channel_url = result.split(',',1)
         if 'CCTV' in channel_name or 'CHC' in channel_name or '地理' in channel_name or '风云' in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
             if channel_name in channel_counters:
                 if channel_counters[channel_name] >= result_counter:
                     continue
@@ -211,7 +210,6 @@ with open("iptv.txt", 'w', encoding='utf-8') as file:
     for result in results:
         channel_name, channel_url = result.split(',',1)
         if '卫视' in channel_name or '凤凰' in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
             if channel_name in channel_counters:
                 if channel_counters[channel_name] >= result_counter:
                     continue
@@ -226,7 +224,6 @@ with open("iptv.txt", 'w', encoding='utf-8') as file:
     for result in results:
         channel_name, channel_url = result.split(',',1)
         if '乐途' in channel_name or '都市' in channel_name or '车迷' in channel_name or '汽摩' in channel_name or '旅游' in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
             if channel_name in channel_counters:
                 if channel_counters[channel_name] >= result_counter:
                     continue

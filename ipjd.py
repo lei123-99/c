@@ -172,15 +172,12 @@ for url in valid_urls:
 
 channels = []
 
-results = []
-
 for result in results:
     line = result.strip()
     if result:
         channel_name, channel_url = result.split(',')
         channels.append((channel_name, channel_url))
-        results.append((channel_name, channel_url))
-
+        
 def channel_key(channel_name):
     match = re.search(r'\d+', channel_name)
     if match:
@@ -189,7 +186,6 @@ def channel_key(channel_name):
         return float('inf')  # 返回一个无穷大的数字作为关键字
 
 # 对频道进行排序
-results.sort(key=lambda x: (x[0], -float(x[2].split()[0])))
 results.sort(key=lambda x: channel_key(x[0]))
 
 result_counter = 10  # 每个频道需要的个数

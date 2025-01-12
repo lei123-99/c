@@ -171,14 +171,13 @@ for url in valid_urls:
             continue
     except:
         continue
-
+keywords = ['CCTV1,', 'CCTV2,', 'CCTV3,', 'CCTV12,', 'CCTV13,', 'CCTV14,', 'CCTV15,', 'CCTV16,', 'CCTV17,', 'CCTV4,', 'CCTV5,', 'CCTV6,', 'CCTV7,', 'CCTV8,', 'CCTV9,']  # 需要提取的关键字列表
+pattern = '|'.join(keywords)  # 创建正则表达式模式，匹配任意一个关键字
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')
     for result in results:
-        channel_name, channel_url = result.split(',',1)
-        if 'CCTV' in channel_name or 'CHC' in channel_name or '地理' in channel_name or '风云' in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
-    file.write('卫视频道,#genre#\n')
+        if re.search(pattern, result):  # 如果行中有任意关键字
+            file.write(result)  # 将该行写入输出文件file.write('卫视频道,#genre#\n')
     for result in results:
         channel_name, channel_url = result.split(',',1)
         if '卫视' in channel_name or '凤凰' in channel_name:

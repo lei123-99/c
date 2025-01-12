@@ -172,6 +172,8 @@ for url in valid_urls:
     except:
         continue
 
+results.sort(key=lambda x:int(x[4:]))
+
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')
     for result in results:

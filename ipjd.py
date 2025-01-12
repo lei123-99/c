@@ -180,7 +180,6 @@ def channel_key(channel_name):
         return float('inf')  # 返回一个无穷大的数字作为关键字
 
 # 对频道进行排序
-for result in results:
     channel_name, channel_url = result.split(',',1)
     results.sort(key=lambda x: channel_key(channel_name))
 

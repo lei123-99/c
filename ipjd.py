@@ -171,23 +171,14 @@ for url in valid_urls:
             continue
     except:
         continue
-keywords = ['CCTV1,', 'CCTV2,', 'CCTV3,', 'CCTV12,', 'CCTV13,', 'CCTV14,', 'CCTV15,', 'CCTV16,', 'CCTV17,', 'CCTV4,', 'CCTV5,', 'CCTV6,', 'CCTV7,', 'CCTV8,', 'CCTV9,']  # 需要提取的关键字列表
+keywords = ['CCTV1,', 'CCTV2,', 'CCTV3,', 'CCTV4,', 'CCTV5,', 'CCTV5+,', 'CCTV6,', 'CCTV7,', 'CCTV8,', 'CCTV9,', 'CCTV10,', 'CCTV11,', 'CCTV12,', 'CCTV13,', 'CCTV14,', 'CCTV15,', 'CCTV16,', 'CCTV17,']  # 需要提取的关键字列表
 pattern = '|'.join(keywords)  # 创建正则表达式模式，匹配任意一个关键字
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')
     for result in results:
         if re.search(pattern, result):  # 如果行中有任意关键字
             file.write(result)  # 将该行写入输出文件file.write('卫视频道,#genre#\n')
-    for result in results:
-        channel_name, channel_url = result.split(',',1)
-        if '卫视' in channel_name or '凤凰' in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
-    file.write('其他频道,#genre#\n')
-    for result in results:
-        channel_name, channel_url = result.split(',',1)
-        if '乐途' in channel_name or '都市' in channel_name or '车迷' in channel_name or '汽摩' in channel_name or '旅游' in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
-                
+    
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()
     file.write(data)

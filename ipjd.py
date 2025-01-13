@@ -174,14 +174,13 @@ for url in valid_urls:
     except:
         continue
         
-def sort_by_numbers(strings):
-    def convert(s):
-        match = re.search(r'\d+', s)
-        return int(match[0]) if match else -1
-    
-    return sorted(strings, key=convert)
-    results = sort_by_numbers(results)
-
+def custom_sort_key(s):    
+    match = re.match(r'\D*(\d+)\D*', s)  # 正则表达式匹配数字
+    return (int(match.group(1)) if match else 0, s)  # 如果有数字，返回数字和原字符串，否则返回0和原字符串
+ 
+results = sorted(results, key=custom_sort_key)
+print(results)
+   
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')
     for result in results:

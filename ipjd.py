@@ -177,10 +177,13 @@ def tryint(s):
         return int(s)
     except valueError:
         return s
+        
 def str2int(v_str):
     return [tryint(sub_str) for sub_str in re.split('([0-9]+)',v_str)]
+    
 def sort_h(log_list):
     return sorted(log_list,key=str2int)
+    
 sort_h(results)
 
 # 对频道进行排序

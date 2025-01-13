@@ -174,6 +174,16 @@ for url in valid_urls:
     except:
         continue
 
+def sort_by_numbers(strings):
+    def convert(s):
+        match = re.findall(r'\d+', s)
+        return int(match[0]) if match else -1
+    
+    return sorted(strings, key=convert)
+ 
+sorted_strings = sort_by_numbers(results)
+print(sorted_strings)
+
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')
     for result in results:

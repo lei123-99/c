@@ -181,8 +181,8 @@ def sort_by_numbers(strings):
     
     return sorted(strings, key=convert)
  
-sorted_strings = sort_by_numbers(results)
-print(sorted_strings)
+results = sort_by_numbers(results)
+print(results)
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

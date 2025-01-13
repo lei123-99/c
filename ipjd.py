@@ -174,7 +174,12 @@ for url in valid_urls:
     except:
         continue
 
-# 对频道进行排序
+def custom_sort_key(s):
+    match = re.match(r'\D*(\d+)\D*', s)  # 正则表达式匹配数字
+    return (int(match.group(1)) if match else 0, s)  # 如果有数字，返回数字和原字符串，否则返回0和原字符串
+ 
+resultss = sorted(results, key=custom_sort_key)
+print(resultss)
    
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

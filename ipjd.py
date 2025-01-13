@@ -173,7 +173,7 @@ for url in valid_urls:
         continue
 
 def channel_key(channel_name):
-    match = re.search(r'\d+', channel_name)
+    match = re.findall(r'\d+', channel_name)
     if match:
         return int(match.group())
     else:
@@ -181,7 +181,7 @@ def channel_key(channel_name):
 
 # 对频道进行排序
 results.sort(key=lambda x: channel_key(x[0]))
-print(match)       
+print(results)       
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

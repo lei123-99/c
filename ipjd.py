@@ -174,12 +174,20 @@ for url in valid_urls:
     except:
         continue
 
-def custom_sort_key(s):
-    match = re.match(r'\D*(\d+)\D*', s)  # 正则表达式匹配数字
-    return (int(match.group(1)) if match else 0, s)  # 如果有数字，返回数字和原字符串，否则返回0和原字符串
+def sort_function(item):
+    # 使用正则表达式来提取数字部分
+    match = re.match(r'CCTV(\d+)(.*)', item)
+    if match:
+        # 返回一个元组，包含数字和后缀，以便正确排序
+        return int(match.group(1)), match.group(2) or ''
+    else:
+        # 对于不符合规则的元素，返回一个较大的数值，确保它们排在最后
+        return float('inf'), ''
  
-resultss = sorted(results, key=custom_sort_key)
-print(resultss)
+# 使用sorted函数和自定义的排序键
+sorted_elements = sorted(results, key=sort_function)
+ 
+print(sorted_elements)
    
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

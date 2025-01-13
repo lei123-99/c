@@ -173,16 +173,16 @@ for url in valid_urls:
             continue
     except:
         continue
+        
+def sort_by_numbers(strings):
+    def convert(s):
+        match = re.findall(r'\d+', s)
+        return int(match[0]) if match else -1
+    
+    return sorted(strings, key=convert)
 
-def channel_key(channel_name):
-    match = re.search(r'\d+', channel_name)
-    if match:
-        return int(match.group())
-    else:
-        return float('inf')  # 返回一个无穷大的数字作为关键字
-
-# 对频道进行排序
-results.sort(key=lambda x: channel_key(x[0]))
+results.sort()
+results = sort_by_numbers(results)
 print(results)
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:

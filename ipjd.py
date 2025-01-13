@@ -174,38 +174,60 @@ for url in valid_urls:
     except:
         continue
 
-def sort_function(item):
-    # 使用正则表达式来提取数字部分
-    match = re.match(r'CCTV(\d+)(.*)', item)
-    if match:
-        # 返回一个元组，包含数字和后缀，以便正确排序
-        return int(match.group(1)), match.group(2) or ''
-    else:
-        # 对于不符合规则的元素，返回一个较大的数值，确保它们排在最后
-        return float('inf'), ''
+def sort_by_numbers(strings):
+    def convert(s):
+        match = re.findall(r'\d+', s)
+        return int(match[0]) if match else -1
+    
+    return sorted(strings, key=convert)
  
-# 使用sorted函数和自定义的排序键
-sorted_elements = sorted(results, key=sort_function)
- 
-print(sorted_elements)
-   
+results = sort_by_numbers(results)
+
+result_counter = 8  # 每个频道需要的个数
+
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')
     for result in results:
         channel_name, channel_url = result.split(',',1)
         if 'CCTV' in channel_name or 'CHC' in channel_name or '地理' in channel_name or '风云' in channel_name:            
-            file.write(f"{channel_name},{channel_url}\n")
+            if channel_name in channel_counters:
+                if channel_counters[channel_name] >= result_counter:
+                    continue
+                else:
+                    file.write(f"{channel_name},{channel_url}\n")
+                    channel_counters[channel_name] += 1
+            else:
+                file.write(f"{channel_name},{channel_url}\n")
+                channel_counters[channel_name] = 1
+    channel_counters = {}
     file.write('卫视频道,#genre#\n')
     for result in results:
         channel_name, channel_url = result.split(',',1)
         if '卫视' in channel_name or '凤凰' in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
+            if channel_name in channel_counters:
+                if channel_counters[channel_name] >= result_counter:
+                    continue
+                else:
+                    file.write(f"{channel_name},{channel_url}\n")
+                    channel_counters[channel_name] += 1
+            else:
+                file.write(f"{channel_name},{channel_url}\n")
+                channel_counters[channel_name] = 1
+    channel_counters = {}
     file.write('其他频道,#genre#\n')
     for result in results:
         channel_name, channel_url = result.split(',',1)
         if '乐途' in channel_name or '都市' in channel_name or '车迷' in channel_name or '汽摩' in channel_name or '旅游' in channel_name:
-            file.write(f"{channel_name},{channel_url}\n")
- 
+            if channel_name in channel_counters:
+                if channel_counters[channel_name] >= result_counter:
+                    continue
+                else:
+                    file.write(f"{channel_name},{channel_url}\n")
+                    channel_counters[channel_name] += 1
+            else:
+                file.write(f"{channel_name},{channel_url}\n")
+                channel_counters[channel_name] = 1
+     
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()
     file.write(data)

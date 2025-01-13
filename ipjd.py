@@ -183,7 +183,6 @@ def channel_key(channel_name):
 
 # 对频道进行排序
 results.sort(key=lambda x: channel_key(results))
-
    
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

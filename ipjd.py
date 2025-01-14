@@ -7,36 +7,10 @@ import threading
 import eventlet
 
 urls = [
-"http://1.192.248.1:9901",
-"http://36.44.157.1:9901",
-"http://58.53.152.1:9901",
-"http://106.118.70.1:9901",
-"http://112.6.165.1:9901",
-"http://112.194.128.1:9901",
-"http://112.234.21.1:9901",
-"http://113.220.235.1:9999",
-"http://118.81.242.1:9999",
-"http://119.125.104.1:9901",
-"http://119.125.134.1:9901",
-"http://119.163.56.1:9901",
-"http://119.163.57.1:9901",
-"http://119.163.61.1:9901",
-"http://120.197.43.1:9901",
-"http://122.246.75.1:9901",
-"http://123.7.110.1:9901",
-"http://123.161.37.1:9901",
-"http://124.228.160.1:9901",
-"http://125.43.244.1:9901",
-"http://125.114.241.1:9901",
-"http://144.52.160.1:9901",
-"http://171.117.15.1:9999",
-"http://183.131.246.1:9901",
-"http://219.145.59.1:8888",
-"http://219.154.240.1:9901",
-"http://219.154.242.1:9901",
-"http://221.226.4.1:9901",
-"http://221.13.235.1:9901",
-"http://221.193.168.1:9901"
+"http://110.183.51.1:808",
+"http://110.183.53.1:808", 
+"http://60.220.147.1:808",
+"http://183.184.104.1:8088"
     ]
 
 def modify_urls(url):
@@ -46,7 +20,7 @@ def modify_urls(url):
     base_url = url[:ip_start_index]  # http:// or https://
     ip_address = url[ip_start_index:ip_end_index]
     port = url[ip_end_index:]
-    ip_end = "/iptv/live/1000.json?key=txiptv"
+    ip_end = "/ZHGXTV/Public/json/live_interface.txt"
     for i in range(1, 256):
         modified_ip = f"{ip_address[:-1]}{i}"
         modified_url = f"{base_url}{modified_ip}{port}{ip_end}"
@@ -104,32 +78,25 @@ for url in valid_urls:
 for url in valid_urls:
     try:
         # 发送GET请求获取JSON文件，设置超时时间为0.5秒
-        ip_start_index = url.find("//") + 2
-        ip_dot_start = url.find(".") + 1
-        ip_index_second = url.find("/", ip_dot_start)
-        base_url = url[:ip_start_index]  # http:// or https://
-        ip_address = url[ip_start_index:ip_index_second]
-        url_x = f"{base_url}{ip_address}"
-
         json_url = f"{url}"
         response = requests.get(json_url, timeout=0.5)
-        json_data = response.json()
+        json_data = response.content.decode('utf-8')
 
         try:
-            # 解析JSON文件，获取name和url字段
-            for item in json_data['data']:
-                if isinstance(item, dict):
-                    name = item.get('name')
-                    urlx = item.get('url')
-                    if ',' in urlx:
-                        urlx=f"aaaaaaaa"
-                    #if 'http' in urlx or 'udp' in urlx or 'rtp' in urlx:
-                    if 'http' in urlx:
-                        urld = f"{urlx}"
+            # 按行分割数据
+            lines = json_data.split('\n')
+            for line in lines:
+                line = line.strip()
+                if line:
+                    name, channel_url = line.split(',',1)
+                    urls = channel_url.split('/', 3)
+                    url_data = json_url.split('/', 3)
+                    if len(urls) >= 4:
+                        urld = (f"{urls[0]}//{url_data[2]}/{urls[3]}")
                     else:
-                        urld = f"{url_x}{urlx}"
+                        urld = (f"{urls[0]}//{url_data[2]}")
 
-                    if name and urlx:
+                    if name and urld:
                         # 删除特定文字
                         name = name.replace("cctv", "CCTV")
                         name = name.replace("中央", "CCTV")
@@ -173,7 +140,7 @@ for url in valid_urls:
                         name = name.replace("CCTV5+体育赛视", "CCTV5+")
                         name = name.replace("CCTV5+体育赛事", "CCTV5+")
                         name = name.replace("CCTV5+体育", "CCTV5+")
-                        if "txiptv" in urld:
+                        if "/hls/" in urld:
                             results.append(f"{name},{urld}")
         except:
             continue

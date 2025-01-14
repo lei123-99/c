@@ -169,7 +169,7 @@ for url in valid_urls:
                         name = name.replace("CCTV5+体育赛事", "CCTV5+")
                         name = name.replace("CCTV5+体育", "CCTV5+")
                         if "txiptv" in urld:
-                        results.append(f"{name},{urld}")
+                            results.append(f"{name},{urld}")
         except:
             continue
     except:

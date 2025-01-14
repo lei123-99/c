@@ -184,7 +184,7 @@ with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('卫视频道,#genre#\n')
     for result in results:
         channel_name, channel_url = result.split(',',1)
-        channel_name.sort()
+        result.sort()
         if '卫视' in channel_name or '凤凰' in channel_name:            
             file.write(f"{channel_name},{channel_url}\n")
     file.write('其他频道,#genre#\n')

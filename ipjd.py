@@ -4,7 +4,6 @@ import requests
 import concurrent.futures
 import re
 import threading
-from queue import Queue
 import eventlet
 
 urls = [

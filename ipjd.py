@@ -175,10 +175,10 @@ for url in valid_urls:
         continue
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
-    file.write('央视频道,#genre#\n')
+    file.write('央视频道,#genre#\n')    
     for result in results:
-        channel_name, channel_url = result.split(',',1)
-        channel_name.sort(key=lambda x: (x[5],x[4]))
+        result.sort(key=lambda x: (x[5],x[4]))
+        channel_name, channel_url = result.split(',',1)        
         if 'CCTV' in channel_name or 'CHC' in channel_name or '地理' in channel_name or '风云' in channel_name:            
             file.write(f"{channel_name},{channel_url}\n")
     file.write('卫视频道,#genre#\n')

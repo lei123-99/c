@@ -111,21 +111,21 @@ txt_filename = f'iptv.txt'
 with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'w') as new_file:
     new_file.write('央视频道,#genre#\n')
     for data in file:
-        name, url = data.slipt(',')
+        name, url = data.split(',')
         if 'CCTV' in name or 'CHC' in name:
             for url in all_valid_ips:
                 new_url = url.replace("rtp://", f"http://{url}/rtp/")
                 new_file.write(f"{name},{new_url}\n")
     new_file.write('卫视频道,#genre#\n')
     for data in file:
-        name, url = data.slipt(',')
+        name, url = data.split(',')
         if '卫视' in name:
             for url in all_valid_ips:
                 new_url = url.replace("rtp://", f"http://{url}/rtp/")
                 new_file.write(f"{name},{new_url}\n")
     new_file.write('其它频道,#genre#\n')
     for data in file:
-        name, url = data.slipt(',')
+        name, url = data.split(',')
         if 'CCTV' not in name and 'CHC' not in name and '卫视' not in name:
             for url in all_valid_ips:
                 new_url = url.replace("rtp://", f"http://{url}/rtp/")

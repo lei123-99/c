@@ -179,7 +179,7 @@ for url in valid_urls:
             continue
     except:
         continue
-        
+
 def natural_key(string):
     return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', string)]
 

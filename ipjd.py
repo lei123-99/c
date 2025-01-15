@@ -115,22 +115,20 @@ with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'w') a
             for url in all_valid_ips:
                 new_data = data.replace("rtp://", f"http://{url}/rtp/")
                 new_file.write(new_data)
-
     new_file.write('卫视频道,#genre#\n')
     for data in file:
         if '卫视' in data:
             for url in all_valid_ips:
                 new_data = data.replace("rtp://", f"http://{url}/rtp/")
                 new_file.write(new_data)
-
-with open(f'df.txt', 'r', encoding='utf-8') as file,open(txt_filename, 'a') as new_file:
-        data = file.read()
-        new_file.write(data)
-
     new_file.write('其它频道,#genre#\n')
     for data in file:
         if 'CCTV' not in data and 'CHC' not in data and '卫视' not in data:
             for url in all_valid_ips:
                 new_data = data.replace("rtp://", f"http://{url}/rtp/")
                 new_file.write(new_data)
+                
+with open(f'df.txt', 'r', encoding='utf-8') as file,open(txt_filename, 'a') as new_file:
+    data = file.read()
+    new_file.write(data)                
 print(f'已生成播放列表，保存至{txt_filename}')

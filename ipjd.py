@@ -70,9 +70,9 @@ for ip_part, port, option in configs:
 
 # 执行 IP 扫描
 all_valid_ips = []
-for ip_part, port in unique_configs:
-    print(f"开始扫描 地址: {ip_part}, 端口: {port}")
-    ips_to_check = generate_ips(ip_part)
+for ip_part, port, option in unique_configs:
+    print(f"开始扫描 地址: {ip_part}, 端口: {port}, 类型: {option} （默认类型为0扫描D段，类型为1时扫描C,D段）")
+    ips_to_check = generate_ips(ip_part, option)
 
     valid_ips = []
     total_ips = len(ips_to_check)
@@ -278,7 +278,7 @@ for url in valid_urls:
                         name = name.replace("CCTV17农业", "CCTV17")
                         name = name.replace("CCTV5+体育赛视", "CCTV5+")
                         name = name.replace("CCTV5+体育赛事", "CCTV5+")
-                        name = name.replace("CCTV5+体育", "CCTV5+")                       
+                        name = name.replace("CCTV5+体育", "CCTV5+")
                         if "txiptv" in urld:
                             results.append(f"{name},{urld}")
         except:

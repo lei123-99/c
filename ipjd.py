@@ -6,16 +6,13 @@ import threading
 from threading import Thread
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-configs = [
-"60.220.167.99:8082",
-"60.223.69.250:10000",
-"60.223.72.3:8002",
-"118.81.167.191:8083",
-"171.118.121.141:8082",
-"171.118.171.185:8084",
-"183.184.43.191:8002",
-"221.205.19.39:8082"
-]
+import os
+import re
+import time
+import requests
+import threading
+from threading import Thread
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def check_ip(ip, port):
     try:
@@ -28,20 +25,56 @@ def check_ip(ip, port):
         return None
     return None
 
-def generate_ips(ip_part):
+def generate_ips(ip_part, option):
     a, b, c, d = map(int, ip_part.split('.'))
-    return [f"{a}.{b}.{c}.{d}" for d in range(1, 256)]
+    if option == 0:
+        return [f"{a}.{b}.{c}.{d}" for d in range(1, 256)]
+    else:
+        return [f"{a}.{b}.{c}.{d}" for c in range(0, 256) for d in range(0, 256)]
+
+def read_config(config_path):
+    configs = []
+    try:
+        with open(config_path, 'r') as file:
+            for line in file:
+                line = line.strip()
+                if line:
+                    parts = line.split(',')
+                    ip_port = parts[0].strip()  # 去除IP:端口部分前后的空格
+                    if len(parts) == 2:
+                        option = int(parts[1].strip())  # 去除扫描类型部分前后的空格，并转换为整数
+                    else:
+                        option = 0  # 默认为0
+                    if ':' in ip_port:
+                        ip, port = ip_port.split(':')
+                        configs.append((ip, port, option))
+                    else:
+                        print(f"配置文件中的 IP:端口 格式错误: {line}")
+    except FileNotFoundError:
+        print(f"配置文件 '{config_path}' 不存在。")
+        return []
+    except ValueError as e:
+        print(f"配置文件格式错误: {e}")
+        return []
+    except Exception as e:
+        print(f"读取配置文件出错: {e}")
+        return []
+    return configs
 
 # 定义一个集合，用于存储唯一的 IP 地址及端口组合
 unique_ip_ports = set()
 
+# 读取配置文件
+config_path = f'config.txt'
+configs = read_config(config_path)
+
 # 使用集合去除配置文件内重复的 IP 地址及端口
 unique_configs = []
-for ip_part in configs:
-    ip_port,port = ip_part.split(':')
+for ip_part, port, option in configs:
+    ip_port = f"{ip_part}:{port}"
     if ip_port not in unique_ip_ports:
         unique_ip_ports.add(ip_port)
-        unique_configs.append((ip_part, port))
+        unique_configs.append((ip_part, port, option))
 
 # 执行 IP 扫描
 all_valid_ips = []

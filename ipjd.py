@@ -30,7 +30,7 @@ def check_ip(ip, port):
 
 def generate_ips(ip_part):
     a, b, c, d = map(int, ip_part.split('.'))
-        return [f"{a}.{b}.{c}.{d}" for d in range(1, 256)]
+    return [f"{a}.{b}.{c}.{d}" for d in range(1, 256)]
 
 # 执行 IP 扫描
 all_valid_ips = []

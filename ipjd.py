@@ -6,7 +6,7 @@ import threading
 from threading import Thread
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-unique_configs = [
+configs = [
 "60.220.167.99:8082",
 "60.223.69.250:10000",
 "60.223.72.3:8002",
@@ -31,6 +31,17 @@ def check_ip(ip, port):
 def generate_ips(ip_part):
     a, b, c, d = map(int, ip_part.split('.'))
     return [f"{a}.{b}.{c}.{d}" for d in range(1, 256)]
+
+# 定义一个集合，用于存储唯一的 IP 地址及端口组合
+unique_ip_ports = set()
+
+# 使用集合去除配置文件内重复的 IP 地址及端口
+unique_configs = []
+for ip_part in configs:
+    ip_port,port = ip_part.split(':')
+    if ip_port not in unique_ip_ports:
+        unique_ip_ports.add(ip_port)
+        unique_configs.append((ip_part, port))
 
 # 执行 IP 扫描
 all_valid_ips = []

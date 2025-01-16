@@ -278,13 +278,7 @@ for url in valid_urls:
                         name = name.replace("CCTV17农业", "CCTV17")
                         name = name.replace("CCTV5+体育赛视", "CCTV5+")
                         name = name.replace("CCTV5+体育赛事", "CCTV5+")
-                        name = name.replace("CCTV5+体育", "CCTV5+")
-                        name = name.replace("CCTV高尔夫.网球", "CCTV高尔夫网球")
-                        name = name.replace("风云音乐", "CCTV风云音乐")
-                        name = name.replace("风云剧场", "CCTV风云剧场")
-                        name = name.replace("风云足球", "CCTV风云足球")
-                        name = name.replace("世界地理", "CCTV世界地理")
-                        name = name.replace("地理", "CCTV世界地理")
+                        name = name.replace("CCTV5+体育", "CCTV5+")                       
                         if "txiptv" in urld:
                             results.append(f"{name},{urld}")
         except:

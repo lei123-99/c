@@ -332,7 +332,7 @@ with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'a') a
                 new_file.write(new_data)
     for result in results:
         channel_name, channel_url = result.split(',')
-        if '乐游' in channel_name or '都市' in channel_name or '车迷' in channel_name or '汽摩' in channel_name or '旅游' in channel_name:
+        if '乐游' in channel_name or '车迷' in channel_name or '汽摩' in channel_name or '旅游' in channel_name:
             new_file.write(f"{channel_name},{channel_url}\n")
 
 print(f'已生成播放列表，保存至{txt_filename}')

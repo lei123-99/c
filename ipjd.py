@@ -293,7 +293,7 @@ with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'w') a
     for result in results:
         channel_name, channel_url = result.split(',')
         if 'CCTV' in channel_name or 'CHC' in channel_name or '地理' in channel_name or '风云' in channel_name:
-            new_file..write(f"{channel_name},{channel_url}\n")            
+            new_file.write(f"{channel_name},{channel_url}\n")            
 
 with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'a') as new_file:
     new_file.write('卫视频道,#genre#\n')
@@ -305,7 +305,7 @@ with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'a') a
     for result in results:
         channel_name, channel_url = result.split(',')
         if '卫视' in channel_name or '凤凰' in channel_name:
-            new_file..write(f"{channel_name},{channel_url}\n")
+            new_file.write(f"{channel_name},{channel_url}\n")
   
 with open(f'df.txt', 'r', encoding='utf-8') as file,open(txt_filename, 'a') as new_file:
         data = file.read()

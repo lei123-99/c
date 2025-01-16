@@ -285,7 +285,12 @@ for url in valid_urls:
             continue
     except:
         continue
-                    
+
+def natural_key(string):
+    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', string)]
+
+results.sort(key=natural_key)
+
 #生成节目列表 省份运营商.txt
 rtp_filename = f'rtp/山西_联通.txt'
 txt_filename = f'iptv.txt'

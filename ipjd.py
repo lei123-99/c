@@ -6,14 +6,6 @@ import threading
 from threading import Thread
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-import os
-import re
-import time
-import requests
-import threading
-from threading import Thread
-from concurrent.futures import ThreadPoolExecutor, as_completed
-
 def check_ip(ip, port):
     try:
         url = f"http://{ip}:{port}/status"

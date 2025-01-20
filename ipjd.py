@@ -287,10 +287,14 @@ for url in valid_urls:
     except:
         continue
 
-def natural_key(string):
-    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', string)]
+custom_order = ['黑龙江', '吉林', '辽宁']
 
-results.sort(key=natural_key)
+sorted_items = sorted(results, key=lambda x: custom_order.index(x))
+
+#def natural_key(string):
+   #return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', string)]
+
+#results.sort(key=natural_key)
 
 #生成节目列表 省份运营商.txt
 rtp_filename = f'rtp/山西_联通.txt'

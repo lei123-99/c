@@ -181,7 +181,7 @@ for url in valid_urls:
         continue
         
 custom_order = ['黑龙江', '吉林', '辽宁']
-results = sorted(results, key=lambda x: custom_order.index(x))
+results.sort(key=lambda x: custom_order.index(x))
 
 #def natural_key(string):
     #return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', string)]

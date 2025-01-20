@@ -186,17 +186,24 @@ def natural_key(string):
 results.sort(key=natural_key)
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
-    file.write('央视频道,#genre#\n')
+    file.write('央视频道,#genre#\nCCTV1,\nCCTV2,\nCCTV3,\nCCTV4,\nCCTV5,\nCCTV5+,\n
+    CCTV6,\nCCTV7,\nCCTV8,\nCCTV9,\nCCTV10,\nCCTV11,\nCCTV12,\nCCTV13,\nCCTV14,\n
+    CCTV15,\nCCTV16,\nCCTV17,\nCHC家庭影院,\nCHC影迷电影,\nCHC动作电影,\nCCTV兵器科技,\n
+    CCTV怀旧剧场,\nCCTV世界地理,\nCCTV文化精品,\nCCTV台球,\nCCTV高尔夫网球,\nCCTV风云剧场,\n
+    CCTV风云音乐,\nCCTV第一剧场,\nCCTV女性时尚,\nCCTV风云足球,\nCCTV电视指南,\n')
     for result in results:
         channel_name, channel_url = result.split(',')
         if 'CCTV' in channel_name or 'CHC' in channel_name or '地理' in channel_name or '风云' in channel_name:
             file.write(f"{channel_name},{channel_url}\n")
-    file.write('卫视频道,#genre#\n')
+    file.write('卫视频道,#genre#\n黑龙江卫视,\n吉林卫视,\n辽宁卫视,\n内蒙古卫视,\n北京卫视,\n天津卫视,\n河北卫视,\n
+    河南卫视,\n山东卫视,\n山西卫视,\n东方卫视,\n浙江卫视,\n江苏卫视,\n江西卫视,\n东南卫视,\n广东卫视,\n广西卫视,\n
+    安徽卫视,\n湖北卫视,\n湖南卫视,\n新疆卫视,\n青海卫视,\n甘肃卫视,\n宁夏卫视,\n陕西卫视,\n西藏卫视,\n四川卫视,\n
+    重庆卫视,\n贵州卫视,\n云南卫视,\n海南卫视,\n深圳卫视,\n兵团卫视,\n凤凰资讯,\n凤凰中文,\n')
     for result in results:
         channel_name, channel_url = result.split(',')
         if '卫视' in channel_name or '凤凰' in channel_name:
             file.write(f"{channel_name},{channel_url}\n")
-    file.write('其他频道,#genre#\n')
+    file.write('其他频道,#genre#\n乐游频道,\n重庆汽摩,\n车迷频道,\n')
     for result in results:
         channel_name, channel_url = result.split(',')
         if '乐游' in channel_name or '都市' in channel_name or '车迷' in channel_name or '汽摩' in channel_name or '旅游' in channel_name:

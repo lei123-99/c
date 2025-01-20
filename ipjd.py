@@ -186,7 +186,7 @@ def natural_key(string):
 results.sort(key=natural_key)
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
-    file.write('央视频道,#genre#\n')
+    file.write('央视频道,#genre#\n CCTV1,\n CCTV2,\n')
     for result in results:
         channel_name, channel_url = result.split(',')
         if 'CCTV' in channel_name or 'CHC' in channel_name or '地理' in channel_name or '风云' in channel_name:

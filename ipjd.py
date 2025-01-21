@@ -207,7 +207,7 @@ for line in results:
         elif line:
             channels[current_category].append((line, ''))
           
-for category, channel_list in results.items():
+for category, channel_list in channels[current_category].items():
     if category in all_channels:
         all_channels[category].extend(channel_list)
     else:

@@ -212,7 +212,7 @@ for line in results:
         if match:
             channel_name = match.group(1).strip()
             channel_url = match.group(2).strip()
-            channels[current_category].append((channel_name, channel_url))    
+            channels[current_category].append((channel_name, channel_url))
         elif line:
             channels[current_category].append((line, ''))
                 

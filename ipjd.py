@@ -241,8 +241,8 @@ for category, channel_list in template_channels.items():
 with open("live.txt", "w", encoding="utf-8") as f_txt:
     for group in config.announcements:
         f_txt.write(f"{group['channel']},#genre#\n")
-            for announcement in group['entries']:                    
-                f_txt.write(f"{announcement['name']},{announcement['url']}\n")
+        for announcement in group['entries']:                    
+            f_txt.write(f"{announcement['name']},{announcement['url']}\n")
 
     for category, channel_list in template_channels.items():
         f_txt.write(f"{category},#genre#\n")

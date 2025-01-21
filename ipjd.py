@@ -229,8 +229,7 @@ def filter_source_urls(template_file):
 
 def updateChannelUrlsM3U(channels, template_channels):
     written_urls = set()
-
-        with open("iptv.txt", "w", encoding="utf-8") as f_txt:
+    with open(f"iptv.txt", "w", encoding="utf-8") as f_txt:
             for group in config.announcements:
                 f_txt.write(f"{group['channel']},#genre#\n")
                 for announcement in group['entries']:

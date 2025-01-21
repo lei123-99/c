@@ -229,11 +229,10 @@ with open("iptv.txt", "w", encoding="utf-8") as f_txt:
                 if channel_name in channels[category]:
                     sorted_urls = sorted(channels[category][channel_name], key=lambda url: not is_ipv6(url) if config.ip_version_priority == "ipv6" else is_ipv6(url))
                     filtered_urls = []
-                    for url in sorted_urls:
-                        if url and url not in written_urls and not any(blacklist in url for blacklist in config.url_blacklist):
-                            filtered_urls.append(url)
-                            written_urls.add(url)                            
-                            f_txt.write(f"{channel_name},{new_url}\n")
+                    for url in sorted_urls:                        
+                        filtered_urls.append(url)
+                        written_urls.add(url)                            
+                        f_txt.write(f"{channel_name},{new_url}\n")
 
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()

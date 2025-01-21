@@ -176,6 +176,7 @@ for url in valid_urls:
                         name = name.replace("CCTV5+体育", "CCTV5+")
                         if "txiptv" in urld:
                             results.append(f"{name},{urld}")
+                            print(results)
         except:
             continue
     except:

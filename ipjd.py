@@ -198,7 +198,6 @@ with open(f"d.txt", "r", encoding="utf-8") as f:
             elif current_category:
                 channel_name = line.split(",")[0].strip()
                 template_channels[current_category].append(channel_name)
-return template_channels
 
 all_channels = OrderedDict()
 for line in results:

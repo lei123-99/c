@@ -197,7 +197,7 @@ def filter_data_by_keys(source, keys):
     return filtered_data
  
 # 使用函数筛选数据
-filtered_data = filter_data_by_keys(source_data, key_order)
+filtered_data = filter_data_by_keys(results, key_order)
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

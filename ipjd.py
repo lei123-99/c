@@ -215,9 +215,7 @@ def fetch_channels(url):
         if channels:
             categories = ", ".join(channels.keys())
             logging.info(f"url: {url} 爬取成功✅，包含频道分类: {categories}")
-    except requests.RequestException as e:
-        logging.error(f"url: {url} 爬取失败❌, Error: {e}")
-
+    
     return channels
 
 def match_channels(template_channels, all_channels):

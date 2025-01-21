@@ -199,7 +199,7 @@ def parse_template(template_file):
 def fetch_channels(url):
     channels = OrderedDict()
 
-    for line in lines:
+    for line in results:
         line = line.strip()
         if "#genre#" in line:
             current_category = line.split(",")[0].strip()

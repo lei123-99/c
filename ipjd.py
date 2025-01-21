@@ -213,7 +213,13 @@ for line in results:
     for category, channel_list in fetched_channels.items():
         if category in all_channels:
             all_channels[category].extend(channel_list)
-        else:
+        elif current_category:
+            match = re.match(r"^(.*?),(.*?)$", line)
+            if match:
+                channel_name = match.group(1).strip()
+                channel_url = match.group(2).strip()
+                channels[current_category].append((channel_name, channel_url))    
+            else:
             all_channels[category] = channel_list
 
 matched_channels = match_channels(template_channels, all_channels)

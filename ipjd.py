@@ -1,7 +1,8 @@
 import time
 import os
 import requests
-import concurrent.futures
+import concurrent.futuresp
+from collections import OrderedDict
 import re
 import threading
 import eventlet
@@ -180,13 +181,6 @@ for url in valid_urls:
     except:
         continue
 
-import re
-import requests
-import logging
-from collections import OrderedDict
-from datetime import datetime
-import config
-
 def parse_template(template_file):
     template_channels = OrderedDict()
     current_category = None
@@ -232,7 +226,7 @@ def filter_source_urls(template_file):
 
     all_channels = OrderedDict()
     for url in source_urls:
-        fetched_channels = fetch_channels(url)
+        fetched_channels = fetch_channels(results)
         for category, channel_list in fetched_channels.items():
             if category in all_channels:
                 all_channels[category].extend(channel_list)

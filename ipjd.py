@@ -232,7 +232,7 @@ with open("iptv.txt", "w", encoding="utf-8") as f_txt:
                     for url in sorted_urls:                        
                         filtered_urls.append(url)
                         written_urls.add(url)                            
-                        f_txt.write(f"{channel_name},{new_url}\n")
+                        f_txt.write(f"{channel_name},{url}\n")
 
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()

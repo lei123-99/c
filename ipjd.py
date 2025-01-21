@@ -180,83 +180,28 @@ for url in valid_urls:
             continue
     except:
         continue
+ 
+# 这是你定义的需要筛选的键的顺序
+key_order = OrderedDict([
+    ('CCTV1', None),
+    ('CCTV2', None),
+    ('CCTV3', None)
+])
+ 
+# 函数用于筛选数据
+def filter_data_by_keys(source, keys):
+    filtered_data = OrderedDict()
+    for key, _ in keys.items():
+        if key in source:
+            filtered_data[key] = source.pop(key)
+    return filtered_data
+ 
+# 使用函数筛选数据
+filtered_data = filter_data_by_keys(source_data, key_order)
 
-def natural_key(string):
-    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', string)]
-
-results.sort(key=natural_key)
-
-template_channels = OrderedDict()
-current_category = None
-
-with open(f"d.txt", "r", encoding="utf-8") as f:
-    for line in f:
-        line = line.strip()
-        if line and not line.startswith("#"):
-            if "#genre#" in line:
-                current_category = line.split(",")[0].strip()
-                template_channels[current_category] = []
-            elif current_category:
-                channel_name = line.split(",")[0].strip()
-                template_channels[current_category].append(channel_name)
-
-all_channels = OrderedDict()
-channels = OrderedDict()
-for line in results:
-    line = line.strip()
-    if "#genre#" in line:
-        current_category = line.split(",")[0].strip()
-        channels[current_category] = []
-    elif current_category:
-        match = re.match(r"^(.*?),(.*?)$", line)
-        if match:
-            channel_name = match.group(1).strip()
-            channel_url = match.group(2).strip()
-            channels[current_category].append((channel_name, channel_url))
-        elif line:
-            channels[current_category].append((line, ''))
-                
-    for category, channel_list in fetched_channels.items():
-        if category in all_channels:
-            all_channels[category].extend(channel_list)
-        else:
-            all_channels[category] = channel_list
-
-matched_channels = match_channels(template_channels, all_channels)
-
-for category, channel_list in fetched_channels.items():
-    if category in all_channels:
-        all_channels[category].extend(channel_list)
-    else:
-        all_channels[category] = channel_list
-
-matched_channels = OrderedDict()
-
-for category, channel_list in template_channels.items():
-    matched_channels[category] = OrderedDict()
-    for channel_name in channel_list:
-        for online_category, online_channel_list in all_channels.items():
-            for online_channel_name, online_channel_url in online_channel_list:
-                if channel_name == online_channel_name:
-                    matched_channels[category].setdefault(channel_name, []).append(online_channel_url)
-
-with open("iptv.txt", "w", encoding="utf-8") as f_txt:
-    for group in config.announcements:
-        f_txt.write(f"{group['channel']},#genre#\n")
-        for announcement in group['entries']:                    
-            f_txt.write(f"{announcement['name']},{announcement['url']}\n")
-
-    for category, channel_list in template_channels.items():
-        f_txt.write(f"{category},#genre#\n")
-        if category in channels:
-            for channel_name in channel_list:
-                if channel_name in channels[category]:
-                    sorted_urls = sorted(channels[category][channel_name], key=lambda url: not is_ipv6(url) if config.ip_version_priority == "ipv6" else is_ipv6(url))
-                    filtered_urls = []
-                    for url in sorted_urls:
-                        if url and url not in written_urls and not any(blacklist in url for blacklist in config.url_blacklist):
-                            filtered_urls.append(url)
-                            written_urls.add(url)
+with open("iptv.txt", 'w', encoding='utf-8') as file:
+    file.write('央视频道,#genre#\n')
+        file.write(f"{filtered_data}\n")
 
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()

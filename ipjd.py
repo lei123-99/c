@@ -207,12 +207,6 @@ for line in results:
         elif line:
             channels[current_category].append((line, ''))
           
-for category, channel_list in channels[current_category].items():
-    if category in all_channels:
-        all_channels[category].extend(channel_list)
-    else:
-        all_channels[category] = channel_list
-
 matched_channels = OrderedDict()
 
 for category, channel_list in template_channels.items():

@@ -201,6 +201,7 @@ with open(f"d.txt", "r", encoding="utf-8") as f:
                 template_channels[current_category].append(channel_name)
 
 all_channels = OrderedDict()
+channels = OrderedDict()
 for line in results:
     line = line.strip()
     if "#genre#" in line:

@@ -260,9 +260,9 @@ def updateChannelUrlsM3U(channels, template_channels):
 
             f_txt.write("\n")
 
-    template_file = "d.txt"
-    channels, template_channels = filter_source_urls(template_file)
-    updateChannelUrlsM3U(channels, template_channels)
+template_file = "d.txt"
+channels, template_channels = filter_source_urls(template_file)
+updateChannelUrlsM3U(channels, template_channels)
 
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()

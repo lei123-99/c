@@ -235,7 +235,7 @@ def match_channels(template_channels, all_channels):
 
 def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
-    source_urls = config.source_urls
+    source_urls = results
 
     all_channels = OrderedDict()
     for url in source_urls:

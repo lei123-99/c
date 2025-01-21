@@ -195,7 +195,7 @@ with open('d.txt', "r", encoding="utf-8") as f:
 
 all_channels = OrderedDict()
 channels = OrderedDict()
-lines = results.split("\n")
+lines = results
 current_category = None
 for line in lines:
     line = line.strip()

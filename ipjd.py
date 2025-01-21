@@ -198,16 +198,6 @@ def parse_template(template_file):
 
     return template_channels
 
-def fetch_channels(url):
-    channels = OrderedDict()
-        for line in results:
-            line = line.strip()
-            if "#genre#" in line:
-                current_category = line.split(",")[0].strip()
-                channels[current_category] = []
-                channels[current_category].append((line, ''))
-       return channels
-
 def match_channels(template_channels, all_channels):
     matched_channels = OrderedDict()
 

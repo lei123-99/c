@@ -188,18 +188,18 @@ results.sort(key=natural_key)
 template_channels = OrderedDict()
 current_category = None
 
- with open(f'd.txt', "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith("#"):
-                if "#genre#" in line:
-                    current_category = line.split(",")[0].strip()
-                    template_channels[current_category] = []
-                elif current_category:
-                    channel_name = line.split(",")[0].strip()
-                    template_channels[current_category].append(channel_name)
+with open(f"d.txt", "r", encoding="utf-8") as f:
+    for line in f:
+        line = line.strip()
+        if line and not line.startswith("#"):
+            if "#genre#" in line:
+                current_category = line.split(",")[0].strip()
+                template_channels[current_category] = []
+            elif current_category:
+                channel_name = line.split(",")[0].strip()
+                template_channels[current_category].append(channel_name)
 
-    return template_channels
+return template_channels
 
 all_channels = OrderedDict()
 for line in results:

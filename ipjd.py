@@ -210,7 +210,7 @@ for line in results:
                 all_channels[category].extend(channel_list)
             else:
                 all_channels[category] = channel_list
-                
+                print(channel_name)
 matched_channels = OrderedDict()
 
 for category, channel_list in template_channels.items():

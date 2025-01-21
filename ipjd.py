@@ -204,11 +204,11 @@ return template_channels
 all_channels = OrderedDict()
 for line in results:
     line = line.strip()
-        if "#genre#" in line:
-            current_category = line.split(",")[0].strip()
-            channels[current_category] = []
-        elif line:
-            channels[current_category].append((line, ''))
+    if "#genre#" in line:
+        current_category = line.split(",")[0].strip()
+        channels[current_category] = []
+    elif line:
+        channels[current_category].append((line, ''))
                 
     for category, channel_list in fetched_channels.items():
         if category in all_channels:

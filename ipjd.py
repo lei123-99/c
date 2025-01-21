@@ -195,8 +195,9 @@ with open('d.txt', "r", encoding="utf-8") as f:
 
 all_channels = OrderedDict()
 channels = OrderedDict()
+lines = results.text.split("\n")
 current_category = None
-for line in results:
+for line in lines:
     line = line.strip()
     if current_category:
         match = re.match(r"^(.*?),(.*?)$", line)

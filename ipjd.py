@@ -201,7 +201,7 @@ filtered_data = filter_data_by_keys(results, key_order)
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')
-    file.write(filtered_data + "\n")
+    file.write(filtered_data)
 
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()

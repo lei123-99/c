@@ -197,10 +197,7 @@ all_channels = OrderedDict()
 channels = OrderedDict()
 for line in results:
     line = line.strip()
-    if "#genre#" in line:
-        current_category = line.split(",")[0].strip()
-        channels[current_category] = []
-    elif current_category:
+    if current_category:
         match = re.match(r"^(.*?),(.*?)$", line)
         if match:
             channel_name = match.group(1).strip()

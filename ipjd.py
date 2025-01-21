@@ -216,8 +216,6 @@ for line in results:
 
 matched_channels = match_channels(template_channels, all_channels)
 
-return matched_channels, template_channels
-
 for category, channel_list in fetched_channels.items():
     if category in all_channels:
         all_channels[category].extend(channel_list)
@@ -233,8 +231,6 @@ for category, channel_list in template_channels.items():
             for online_channel_name, online_channel_url in online_channel_list:
                 if channel_name == online_channel_name:
                     matched_channels[category].setdefault(channel_name, []).append(online_channel_url)
-
-return matched_channels, template_channels
 
 with open("live.txt", "w", encoding="utf-8") as f_txt:
     for group in config.announcements:

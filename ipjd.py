@@ -196,7 +196,7 @@ with open("iptv.txt", 'w', encoding='utf-8') as file:
         channel_name, channel_url = result.split(',')
         if '卫视' in channel_name or '凤凰' in channel_name:
             file.write(f"{channel_name},{channel_url}\n")
-    file.write('其他频道,#genre#\n')
+    file.write('其它频道,#genre#\n')
     for result in results:
         channel_name, channel_url = result.split(',')
         if '乐游' in channel_name or '都市' in channel_name or '车迷' in channel_name or '汽摩' in channel_name or '旅游' in channel_name:

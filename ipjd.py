@@ -178,6 +178,11 @@ for url in valid_urls:
             continue
     except:
         continue
+        
+with open("tvlist.txt", 'w', encoding='utf-8') as file:
+    for result in results:
+        if result:
+            file.write(result + "\n")
 
 def parse_template(template_file):
     template_channels = OrderedDict()

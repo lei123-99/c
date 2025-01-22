@@ -202,17 +202,17 @@ def fetch_channels(url):
     current_category = None
     for line in lines:
         line = line.strip()
-            if "#genre#" in line:
-                current_category = line.split(",")[0].strip()
-                channels[current_category] = []
-            elif current_category:
-                match = re.match(r"^(.*?),(.*?)$", line)
-                if match:
-                    channel_name = match.group(1).strip()
-                    channel_url = match.group(2).strip()
-                    channels[current_category].append((channel_name, channel_url))
-                elif line:
-                    channels[current_category].append((line, ''))
+        if "#genre#" in line:
+            current_category = line.split(",")[0].strip()
+            channels[current_category] = []
+        elif current_category:
+            match = re.match(r"^(.*?),(.*?)$", line)
+            if match:
+                channel_name = match.group(1).strip()
+                channel_url = match.group(2).strip()
+                channels[current_category].append((channel_name, channel_url))
+            elif line:
+                channels[current_category].append((line, ''))
        
     return channels    
 

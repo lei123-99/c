@@ -198,7 +198,7 @@ def parse_template(template_file):
 
 def fetch_channels(url):
     channels = OrderedDict()
-    for line in results:
+    for line in url:
         line = line.strip()
         if "#genre#" in line:
             current_category = line.split(",")[0].strip()
@@ -228,7 +228,8 @@ def match_channels(template_channels, all_channels):
     
 def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
-    all_channels = OrderedDict()    
+    all_channels = OrderedDict()
+    fetched_channels = fetch_channels(results)
     for category, channel_list in fetch_channels.items():
         if category in all_channels:
             all_channels[category].extend(channel_list)

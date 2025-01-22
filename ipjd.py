@@ -128,7 +128,7 @@ for url in valid_urls:
                     else:
                         urld = f"{url_x}{urlx}"
 
-                    if name and urlx:
+                    if name and urld:
                         # 删除特定文字
                         name = name.replace("cctv", "CCTV")
                         name = name.replace("中央", "CCTV")
@@ -178,7 +178,7 @@ for url in valid_urls:
             continue
     except:
         continue
-      
+
 def parse_template(template_file):
     template_channels = OrderedDict()
     current_category = None
@@ -196,39 +196,21 @@ def parse_template(template_file):
 
     return template_channels
 
-def fetch_channels(url):
-    channels = OrderedDict()
-    current_category = None
-    for lines in results:
-        line = lines.strip()
-        if line:
-            channel_name, channel_url = line.split(',')
-            if "#genre#" in channel_name:
-                current_category = line.split(",")[0].strip()
-                channels[current_category] = []
-            elif current_category:
-                match = re.match(r"^(.*?),(.*?)$", line)
-                if match:
-                    channel_name = match.group(1).strip()
-                    channel_url = match.group(2).strip()
-                    channels[current_category].append((channel_name, channel_url))
-                elif line:
-                    channels[current_category].append((line, ''))
-    return channels    
-
 def match_channels(template_channels, all_channels):
     matched_channels = OrderedDict()
-
-    for category, channel_list in template_channels.items():
-        matched_channels[category] = OrderedDict()
-        for channel_name in channel_list:
-            for online_category, online_channel_list in all_channels.items():
-                for online_channel_name, online_channel_url in online_channel_list:
-                    if channel_name == online_channel_name:
-                        matched_channels[category].setdefault(channel_name, []).append(online_channel_url)
+    for lines in results:
+        line = lines.strip()
+        template_channels = channel_name, channel_url = line.split(',')
+        for category, channel_list in template_channels.items():
+            matched_channels[category] = OrderedDict()
+            for channel_name in channel_list:
+                for online_category, online_channel_list in all_channels.items():
+                    for online_channel_name, online_channel_url in online_channel_list:
+                        if channel_name == online_channel_name:
+                            matched_channels[category].setdefault(channel_name, []).append(online_channel_url)
 
     return matched_channels
-    
+
 def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
     all_channels = OrderedDict()
@@ -242,9 +224,6 @@ def filter_source_urls(template_file):
     matched_channels = match_channels(template_channels, all_channels)
 
     return matched_channels, template_channels
-
- 
-   
 
 template_file = "d.txt"
 channels, template_channels = filter_source_urls(template_file)

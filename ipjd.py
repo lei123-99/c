@@ -179,7 +179,7 @@ for url in valid_urls:
     except:
         continue
         
-with open("tvlist.txt", 'w', encoding='utf-8') as file:
+with open("iptv.txt", 'w', encoding='utf-8') as file:
     for result in results:
         if result:
             file.write(result + "\n")

@@ -182,7 +182,7 @@ for url in valid_urls:
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     for result in results:
         if result:
-            file.write(result "\n")
+            file.write(result)
  
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()

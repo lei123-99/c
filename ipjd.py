@@ -241,19 +241,18 @@ def filter_source_urls(template_file):
 
     return matched_channels, template_channels
 
-def updateChannelUrlsM3U(channels, template_channels):
-    written_urls = set()   
-    with open("iptv.txt", "w", encoding="utf-8") as f_txt:
-        for category, channel_list in template_channels.items():
-            f_txt.write(f"{category},#genre#\n")
-            if category in channels:
-                for channel_name in channel_list:                                      
-                    f_txt.write(f"{channel_name},{url}\n")
+ 
+   
 
-if __name__ == "__main__":
-    template_file = "d.txt"
-    channels, template_channels = filter_source_urls(template_file)
-    updateChannelUrlsM3U(channels, template_channels)
+template_file = "d.txt"
+channels, template_channels = filter_source_urls(template_file)
+
+with open("iptv.txt", "w", encoding="utf-8") as f_txt:
+    for category, channel_list in template_channels.items():
+        f_txt.write(f"{category},#genre#\n")
+        if category in channels:
+            for channel_name in channel_list:                                      
+                f_txt.write(f"{channel_name},{url}\n")
 
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()

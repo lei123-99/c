@@ -228,14 +228,12 @@ def match_channels(template_channels, all_channels):
     
 def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
-    all_channels = OrderedDict()
-    for url in source_urls:
-        fetched_channels = fetch_channels(url)
-        for category, channel_list in fetched_channels.items():
-            if category in all_channels:
-                all_channels[category].extend(channel_list)
-            else:
-                all_channels[category] = channel_list
+    all_channels = OrderedDict()    
+    for category, channel_list in fetched_channels.items():
+        if category in all_channels:
+            all_channels[category].extend(channel_list)
+        else:
+            all_channels[category] = channel_list
 
     matched_channels = match_channels(template_channels, all_channels)
 

@@ -196,6 +196,26 @@ def parse_template(template_file):
 
     return template_channels
 
+def fetch_channels(url):
+    channels = OrderedDict()
+    lines = url.split(",")
+    current_category = None
+    for line in lines:
+        line = line.strip()
+            if "#genre#" in line:
+                current_category = line.split(",")[0].strip()
+                channels[current_category] = []
+            elif current_category:
+                match = re.match(r"^(.*?),(.*?)$", line)
+                if match:
+                    channel_name = match.group(1).strip()
+                    channel_url = match.group(2).strip()
+                    channels[current_category].append((channel_name, channel_url))
+                elif line:
+                    channels[current_category].append((line, ''))
+       
+    return channels    
+
 def match_channels(template_channels, all_channels):
     matched_channels = OrderedDict()
 
@@ -212,27 +232,12 @@ def match_channels(template_channels, all_channels):
 def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
     all_channels = OrderedDict()
-    channels = OrderedDict()
-    lines = results.split(",")
-    current_category = None
-    for line in lines:
-        line = line.strip()
-        if "#genre#" in line:
-            current_category = line.split(",")[0].strip()
-            channels[current_category] = []
-        elif current_category:
-            match = re.match(r"^(.*?),(.*?)$", line)
-            if match:
-                channel_name = match.group(1).strip()
-                channel_url = match.group(2).strip()
-                channels[current_category].append((channel_name, channel_url))
-            elif line:
-                channels[current_category].append((line, ''))
-        for category, channel_list in fetched_channels.items():
-            if category in all_channels:
-                all_channels[category].extend(channel_list)
-            else:
-                all_channels[category] = channel_list
+    fetched_channels = fetch_channels(results)
+    for category, channel_list in fetched_channels.items():
+        if category in all_channels:
+            all_channels[category].extend(channel_list)
+        else:
+            all_channels[category] = channel_list
 
     matched_channels = match_channels(template_channels, all_channels)
 

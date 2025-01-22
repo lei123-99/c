@@ -229,7 +229,7 @@ def match_channels(template_channels, all_channels):
 def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
     all_channels = OrderedDict()    
-    for category, channel_list in fetched_channels.items():
+    for category, channel_list in fetch_channels.items():
         if category in all_channels:
             all_channels[category].extend(channel_list)
         else:

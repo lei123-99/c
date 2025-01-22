@@ -199,19 +199,22 @@ def parse_template(template_file):
 def fetch_channels(url):
     channels = OrderedDict()
     current_category = None
-    for line in url:
-        line = line.strip()
-        if "#genre#" in line:
-            current_category = line.split(",")[0].strip()
-            channels[current_category] = []
-        elif current_category:
-            match = re.match(r"^(.*?),(.*?)$", line)
-            if match:
-                channel_name = match.group(1).strip()
-                channel_url = match.group(2).strip()
-                channels[current_category].append((channel_name, channel_url))
-            elif line:
-                channels[current_category].append((line, ''))
+    for result in results:
+        line = result.strip()
+        if result:
+            channel_name, channel_url = result.split(',')
+            channels.append((channel_name, channel_url))
+            if "#genre#" in channel_name:
+                current_category = line.split(",")[0].strip()
+                channels[current_category] = []
+            elif current_category:
+                match = re.match(r"^(.*?),(.*?)$", line)
+                if match:
+                    channel_name = match.group(1).strip()
+                    channel_url = match.group(2).strip()
+                    channels[current_category].append((channel_name, channel_url))
+                elif line:
+                    channels[current_category].append((line, ''))
     return channels    
 
 def match_channels(template_channels, all_channels):

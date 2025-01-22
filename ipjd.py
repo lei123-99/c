@@ -203,7 +203,6 @@ def fetch_channels(url):
         line = result.strip()
         if result:
             channel_name, channel_url = result.split(',')
-            channels.append((channel_name, channel_url))
             if "#genre#" in channel_name:
                 current_category = line.split(",")[0].strip()
                 channels[current_category] = []

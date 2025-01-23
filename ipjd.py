@@ -3,7 +3,6 @@ import requests
 import logging
 from collections import OrderedDict
 from datetime import datetime
-import config
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.FileHandler("function.log", "w", encoding="utf-8"), logging.StreamHandler()])
 

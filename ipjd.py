@@ -257,7 +257,10 @@ def fetch_channels(url):
                     channels[current_category].append((channel_name, channel_url))
                 elif line:
                     channels[current_category].append((line, ''))
-       return channels
+     except requests.RequestException as e:
+        logging.error(f"url: {url} 爬取失败❌, Error: {e}")
+
+    return channels
 
 def match_channels(template_channels, all_channels):
     matched_channels = OrderedDict()

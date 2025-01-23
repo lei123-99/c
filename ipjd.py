@@ -196,7 +196,7 @@ def parse_template(template_file):
 
     return template_channels
 
-def fetch_channels(url):
+def fetch_channels(results):
     channels = OrderedDict()
     lines = results.text.split(",")
     current_category = None

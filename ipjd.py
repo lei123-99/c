@@ -109,37 +109,32 @@ def is_ipv6(url):
 
 def updateChannelUrlsM3U(channels, template_channels):
     written_urls = set()    
-    with open("live.m3u", "w", encoding="utf-8") as f_m3u:
-        f_m3u.write(f"""#EXTM3U x-tvg-url={",".join(f'"{epg_url}"' for epg_url in config.epg_urls)}\n""")
+    with open("live.txt", "w", encoding="utf-8") as f_txt: 
+        for category, channel_list in template_channels.items():
+            f_txt.write(f"{category},#genre#\n")
+            if category in channels:
+                for channel_name in channel_list:
+                    if channel_name in channels[category]:
+                        sorted_urls = sorted(channels[category][channel_name], key=lambda url: not is_ipv6(url) if config.ip_version_priority == "ipv6" else is_ipv6(url))
+                        filtered_urls = []
+                        for url in sorted_urls:
+                            filtered_urls.append(url)
+                            written_urls.add(url)
 
-        with open("live.txt", "w", encoding="utf-8") as f_txt: 
-            for category, channel_list in template_channels.items():
-                f_txt.write(f"{category},#genre#\n")
-                if category in channels:
-                    for channel_name in channel_list:
-                        if channel_name in channels[category]:
-                            sorted_urls = sorted(channels[category][channel_name], key=lambda url: not is_ipv6(url) if config.ip_version_priority == "ipv6" else is_ipv6(url))
-                            filtered_urls = []
-                            for url in sorted_urls:
-                                filtered_urls.append(url)
-                                written_urls.add(url)
+                        total_urls = len(filtered_urls)
+                        for index, url in enumerate(filtered_urls, start=1):
+                            if is_ipv6(url):
+                                url_suffix = f"$LR•IPV6" if total_urls == 1 else f"$LR•IPV6『线路{index}』"
+                            else:
+                                url_suffix = f"$LR•IPV4" if total_urls == 1 else f"$LR•IPV4『线路{index}』"
+                            if '$' in url:
+                                base_url = url.split('$', 1)[0]
+                            else:
+                                base_url = url
 
-                            total_urls = len(filtered_urls)
-                            for index, url in enumerate(filtered_urls, start=1):
-                                if is_ipv6(url):
-                                    url_suffix = f"$LR•IPV6" if total_urls == 1 else f"$LR•IPV6『线路{index}』"
-                                else:
-                                    url_suffix = f"$LR•IPV4" if total_urls == 1 else f"$LR•IPV4『线路{index}』"
-                                if '$' in url:
-                                    base_url = url.split('$', 1)[0]
-                                else:
-                                    base_url = url
+                            new_url = f"{base_url}{url_suffix}"
 
-                                new_url = f"{base_url}{url_suffix}"
-
-                                f_m3u.write(f"#EXTINF:-1 tvg-id=\"{index}\" tvg-name=\"{channel_name}\" tvg-logo=\"https://gcore.jsdelivr.net/gh/yuanzl77/TVlogo@master/png/{channel_name}.png\" group-title=\"{category}\",{channel_name}\n")
-                                f_m3u.write(new_url + "\n")
-                                f_txt.write(f"{channel_name},{new_url}\n")
+                            f_txt.write(f"{channel_name},{new_url}\n")
 
             f_txt.write("\n")
 

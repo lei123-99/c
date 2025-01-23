@@ -179,18 +179,11 @@ for url in valid_urls:
             continue
     except:
         continue
-channel_name, channel_url = result.split(',')
-#def natural_key(string):
-    #return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', string)]
-def channel_key(channel_name):    
-    match = re.search(r'\d+', channel_name)
-    if match:
-        return int(match.group())
-    else:
-        return float('inf')  # 返回一个无穷大的数字作为关键字
 
-# 对频道进行排序
-results.sort(key=channel_key)
+def natural_key(string):
+    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', string)]
+
+results.sort(key=natural_key)
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

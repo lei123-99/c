@@ -178,12 +178,6 @@ for url in valid_urls:
             continue
     except:
         continue
-channels = []
-for result in results:
-    line = result.strip()
-    if result:
-        channel_name, channel_url = result.split(',')
-        channels.append((channel_name, channel_url))
 
 def parse_template(template_file):
     template_channels = OrderedDict()
@@ -208,7 +202,7 @@ def match_channels(template_channels, all_channels):
     for category, channel_list in template_channels.items():
         matched_channels[category] = OrderedDict()
         for channel_name in channel_list:
-            for online_category, online_channel_list in all_channels.items():
+            for online_category, online_channel_list in all_channels():
                 for online_channel_name, online_channel_url in online_channel_list:
                     if channel_name == online_channel_name:
                         matched_channels[category].setdefault(channel_name, []).append(online_channel_url)
@@ -217,7 +211,10 @@ def match_channels(template_channels, all_channels):
 
 template_channels = parse_template(f'd.txt')
 all_channels = OrderedDict()    
-for category, channel_list in channels.items():
+for result in results:
+    line = result.strip()
+    category, channel_lis = result.split(',')
+    if result:
     if category in all_channels:
         all_channels[category].extend(channel_list)
     else:

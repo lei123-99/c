@@ -179,11 +179,10 @@ for url in valid_urls:
             continue
     except:
         continue
-
+channel_name, channel_url = result.split(',')
 #def natural_key(string):
     #return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', string)]
-def channel_key(channel_name):
-    channel_name, channel_url = result.split(',')
+def channel_key(channel_name):    
     match = re.search(r'\d+', channel_name)
     if match:
         return int(match.group())

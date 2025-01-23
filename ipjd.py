@@ -88,7 +88,10 @@ def match_channels(template_channels, all_channels):
 
 def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
-    source_urls = config.source_urls
+    source_urls = [
+    "https://raw.bgithub.xyz/ahua2321/tvlive/refs/heads/main/iptv.txt"
+    "
+]
 
     all_channels = OrderedDict()
     for url in source_urls:
@@ -107,25 +110,11 @@ def is_ipv6(url):
     return re.match(r'^http:\/\/\[[0-9a-fA-F:]+\]', url) is not None
 
 def updateChannelUrlsM3U(channels, template_channels):
-    written_urls = set()
-
-    current_date = datetime.now().strftime("%Y-%m-%d")
-    for group in config.announcements:
-        for announcement in group['entries']:
-            if announcement['name'] is None:
-                announcement['name'] = current_date
-
+    written_urls = set()    
     with open("live.m3u", "w", encoding="utf-8") as f_m3u:
         f_m3u.write(f"""#EXTM3U x-tvg-url={",".join(f'"{epg_url}"' for epg_url in config.epg_urls)}\n""")
 
-        with open("live.txt", "w", encoding="utf-8") as f_txt:
-            for group in config.announcements:
-                f_txt.write(f"{group['channel']},#genre#\n")
-                for announcement in group['entries']:
-                    f_m3u.write(f"""#EXTINF:-1 tvg-id="1" tvg-name="{announcement['name']}" tvg-logo="{announcement['logo']}" group-title="{group['channel']}",{announcement['name']}\n""")
-                    f_m3u.write(f"{announcement['url']}\n")
-                    f_txt.write(f"{announcement['name']},{announcement['url']}\n")
-
+        with open("live.txt", "w", encoding="utf-8") as f_txt: 
             for category, channel_list in template_channels.items():
                 f_txt.write(f"{category},#genre#\n")
                 if category in channels:
@@ -134,9 +123,8 @@ def updateChannelUrlsM3U(channels, template_channels):
                             sorted_urls = sorted(channels[category][channel_name], key=lambda url: not is_ipv6(url) if config.ip_version_priority == "ipv6" else is_ipv6(url))
                             filtered_urls = []
                             for url in sorted_urls:
-                                if url and url not in written_urls and not any(blacklist in url for blacklist in config.url_blacklist):
-                                    filtered_urls.append(url)
-                                    written_urls.add(url)
+                                filtered_urls.append(url)
+                                written_urls.add(url)
 
                             total_urls = len(filtered_urls)
                             for index, url in enumerate(filtered_urls, start=1):

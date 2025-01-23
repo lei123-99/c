@@ -274,7 +274,7 @@ def match_channels(template_channels, all_channels):
 
 def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
-    source_urls = {f'https://raw.bgithub.xyz/ahua3321/tvlive/refs/heads/main/iptv.txt?token=GHSAT0AAAAAAC5YIXUQGKL6MAPX2GN53STCZ4RWVIQ'}
+    source_urls = {"https://raw.bgithub.xyz/ahua2321/tvlive/refs/heads/main/iptv.txt"}
 
     all_channels = OrderedDict()
     for url in source_urls:

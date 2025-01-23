@@ -189,7 +189,7 @@ def parse_template(template_file):
     template_channels = OrderedDict()
     current_category = None
 
-    with open(template_file', "r", encoding="utf-8") as f:
+    with open(template_file , "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if line and not line.startswith("#"):

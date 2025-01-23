@@ -189,7 +189,7 @@ def parse_template(template_file):
     template_channels = OrderedDict()
     current_category = None
 
-    with open(f'd.txt', "r", encoding="utf-8") as f:
+    with open(template_file', "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if line and not line.startswith("#"):
@@ -215,7 +215,7 @@ def match_channels(template_channels, all_channels):
 
     return matched_channels
 
-template_channels = parse_template(template_file)
+template_channels = parse_template(f'd.txt')
 all_channels = OrderedDict()    
 for category, channel_list in channels.items():
     if category in all_channels:

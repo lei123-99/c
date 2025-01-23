@@ -89,7 +89,6 @@ def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
     source_urls = [
     "https://raw.bgithub.xyz/ahua2321/tvlive/refs/heads/main/iptv.txt"
-    "
 ]
 
     all_channels = OrderedDict()

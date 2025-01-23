@@ -178,7 +178,7 @@ for url in valid_urls:
             continue
     except:
         continue
-
+channels = []
 for result in results:
     line = result.strip()
     if result:

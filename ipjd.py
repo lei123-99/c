@@ -217,7 +217,7 @@ def match_channels(template_channels, all_channels):
 
 template_channels = parse_template(template_file)
 all_channels = OrderedDict()    
-for category, channel_list in channels[].items():
+for category, channel_list in channels.items():
     if category in all_channels:
         all_channels[category].extend(channel_list)
     else:
@@ -225,23 +225,20 @@ for category, channel_list in channels[].items():
 
 matched_channels = match_channels(template_channels, all_channels)
 
-return matched_channels, template_channels
+written_urls = set()
+with open("live.txt", "w", encoding="utf-8") as f_txt:
+    for category, channel_list in template_channels.items():
+        f_txt.write(f"{category},#genre#\n")
+        if category in channels:
+            for channel_name in channel_list:
+                if channel_name in channels[category]:
+                    filtered_urls = []
+                    for url in sorted_urls:
+                        filtered_urls.append(url)
+                        written_urls.add(url)            
+                        f_txt.write(f"{channel_name},{url}\n")
 
-def updateChannelUrlsM3U(channels, template_channels):
-    written_urls = set()
-    with open("live.txt", "w", encoding="utf-8") as f_txt:
-        for category, channel_list in template_channels.items():
-            f_txt.write(f"{category},#genre#\n")
-            if category in channels:
-                for channel_name in channel_list:
-                    if channel_name in channels[category]:
-                        filtered_urls = []
-                        for url in sorted_urls:
-                            filtered_urls.append(url)
-                            written_urls.add(url)            
-                            f_txt.write(f"{channel_name},{url}\n")
-
-            f_txt.write("\n")
+        f_txt.write("\n")
 
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()

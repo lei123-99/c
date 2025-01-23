@@ -213,7 +213,7 @@ template_channels = parse_template(f'd.txt')
 all_channels = OrderedDict()    
 for result in results:
     line = result.strip()
-    category, channel_lis = result.split(','):
+    category, channel_lis = result.split(',')
     if category in all_channels:
         all_channels[category].extend(channel_list)
     else:

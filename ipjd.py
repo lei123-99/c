@@ -114,10 +114,9 @@ def updateChannelUrlsM3U(channels, template_channels):
             f_txt.write(f"{category},#genre#\n")
             if category in channels:
                 for channel_name in channel_list:
-                    if channel_name in channels[category]:
-                        sorted_urls = sorted(channels[category][channel_name], key=lambda url:)
+                    if channel_name in channels[category]:                       
                         filtered_urls = []
-                        for url in sorted_urls:
+                        for url in channels[category][channel_name]:
                             filtered_urls.append(url)
                             written_urls.add(url)
 

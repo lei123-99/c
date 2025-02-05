@@ -25,7 +25,7 @@ jobs:
               
       - name: 提交更改
         run: |
-          git config --local user.email "ahua2321@github.com"
+          git config --local user.email "ahua3321@github.com"
           git config --local user.name "ahua"
           if [ -n "$(git status --porcelain)" ]; then
             git commit -am "Automatic update"

@@ -88,6 +88,7 @@ def match_channels(template_channels, all_channels):
 def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
     source_urls = [
+        "https://live.fanmingming.com/tv/m3u/ipv6.m3u",
         "https://raw.bgithub.xyz/ahua2321/tvlive/refs/heads/main/iptv.txt",
         "http://175.178.251.183:6689/aktvlive.txt"
 ]

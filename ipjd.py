@@ -88,9 +88,32 @@ def match_channels(template_channels, all_channels):
 def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
     source_urls = [
-        "https://live.fanmingming.com/tv/m3u/ipv6.m3u",
-        "https://raw.bgithub.xyz/ahua2321/tvlive/refs/heads/main/iptv.txt",
-        "http://175.178.251.183:6689/aktvlive.txt"
+    "http://love23.tpddns.cn:9394/www/love1.txt",
+    "https://ygbh.site/php/p3p.php",
+    "https://raw.bgithub.xyz/kakaxi-2/iptv/main/gotostill.txt",
+    
+    "https://live.fanmingming.com/tv/m3u/ipv6.m3u",
+    "https://raw.bgithub.xyz/yuanzl77/IPTV/main/直播/央视频道.txt",
+    "http://120.79.4.185/new/mdlive.txt",
+    "https://raw.bgithub.xyz/Fairy8o/IPTV/main/PDX-V4.txt",
+    "https://raw.bgithub.xyz/Fairy8o/IPTV/main/PDX-V6.txt",
+    "https://live.zhoujie218.top/tv/iptv6.txt",
+    "https://tv.youdu.fan:666/live/",
+    "http://ww.weidonglong.com/dsj.txt",
+    "http://xhztv.top/zbc.txt",
+    "https://raw.bgithub.xyz/mlvjfchen/TV/main/iptv_list.txt",
+    "https://raw.bgithub.xyz/qingwen07/awesome-iptv/main/tvbox_live_all.txt",
+    "https://v.nxog.top/m/tv/1/",
+    "https://raw.bgithub.xyz/Guovin/TV/gd/result.txt",
+    "http://home.jundie.top:81/Cat/tv/live.txt",
+    "https://raw.bgithub.xyz/vbskycn/iptv/master/tv/hd.txt",
+    "https://cdn.jsdelivr.net/gh/YueChan/live@main/IPTV.m3u",
+    "https://raw.bgithub.xyz/cymz6/AutoIPTV-Hotel/main/lives.txt",
+    "https://raw.bgithub.xyz/PizazzGY/TVBox_warehouse/main/live.txt",
+    "https://fm1077.serv00.net/SmartTV.m3u",
+    "https://raw.bgithub.xyz/ssili126/tv/main/itvlist.txt",
+    "https://raw.bgithub.xyz/kimwang1978/collect-tv-txt/main/merged_output.txt"
+    "https://raw.bgithub.xyz/ahua2321/tvlive/refs/heads/main/iptv.txt",        
 ]
 
     all_channels = OrderedDict()

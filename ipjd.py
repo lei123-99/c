@@ -197,12 +197,8 @@ if __name__ == "__main__":
         for category, channel_list in template_channels.items():
             f_txt.write(f"{category},#genre#\n")
             if category in channels:
-                for channel_name in channel_list:                   
-                    filtered_urls = []                    
-                    if url and channels[category][channel_name]:
-                        filtered_urls.append(url)
-                        written_urls.add(url)                            
-                        f_txt.write(f"{channel_name},{new_url}\n")
+                for channel_name in channel_list:                                                           
+                    f_txt.write(f"{channel_name},{channel_url}\n")
 
             f_txt.write("\n")
 

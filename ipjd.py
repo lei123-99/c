@@ -2,7 +2,6 @@ import time
 import os
 import requests
 import concurrent.futures
-from collections import OrderedDict
 import re
 import threading
 import eventlet
@@ -148,13 +147,6 @@ for url in valid_urls:
             continue
     except:
         continue
-
-with open("live.txt", "w", encoding="utf-8") as f_txt:
-    for category, channel_list in template_channels.items():
-        f_txt.write(f"{category},#genre#\n")
-        if category in channels:
-            for channel_name in channel_list:                                                           
-                f_txt.write(f"{channel_name},{channel_url}\n")
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

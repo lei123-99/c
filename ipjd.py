@@ -219,10 +219,10 @@ with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as
 def filter_source_urls(template_file):
     template_channels = parse_template(template_file)
     all_channels = OrderedDict()
-        if category in all_channels:
-            all_channels[category].extend(channel_list)
-        else:
-            all_channels[category] = channel_list
+    if category in all_channels:
+        all_channels[category].extend(channel_list)
+    else:
+        all_channels[category] = channel_list
 
     matched_channels = match_channels(template_channels, all_channels)
 

@@ -152,7 +152,7 @@ rtp_filename = f'd.txt'
 txt_filename = f'iptv.txt'
 
 with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'w') as new_file:
-    for data in file.readline():
+    for data in file:
         data = data.strip()
         if data and not data.startswith("#"):
             if "#genre#" in data:

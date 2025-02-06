@@ -108,7 +108,7 @@ for url in valid_urls:
     print(url)
 # 遍历网址列表，获取JSON文件并解析
 for url in valid_urls:
-channels = OrderedDict()
+    channels = OrderedDict()
     try:
         # 发送GET请求获取JSON文件，设置超时时间为0.5秒
         json_url = f"{url}"

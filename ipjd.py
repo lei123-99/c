@@ -191,7 +191,7 @@ if __name__ == "__main__":
     template_file = "d.txt"
     template_channels = parse_template(template_file)
     all_channels = OrderedDict()
-    matched_channels = match_channels(template_channels, all_channels)
+    matched_channels = match_channels(template_channels, channel_name)
 
 with open("live.txt", "w", encoding="utf-8") as f_txt:
     for category, channel_list in template_channels.items():

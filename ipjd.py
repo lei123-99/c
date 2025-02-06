@@ -148,7 +148,7 @@ for url in valid_urls:
     except:
         continue
 
-rtp_filename = f'd.txt'
+rtp_filename = f'mb.txt'
 txt_filename = f'iptv.txt'
 
 with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'w') as new_file:
@@ -164,5 +164,5 @@ with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'w') a
                         new_file.write(f"{channel_name},{channel_url}\n")            
 
 with open(f'df.txt', 'r', encoding='utf-8') as file,open(txt_filename, 'a') as new_file:
-        data = file.read()
-        new_file.write(data)
+    data = file.read()
+    new_file.write(data)

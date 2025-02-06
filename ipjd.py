@@ -239,6 +239,5 @@ with open("live.txt", "w", encoding="utf-8") as f_txt:
             f_txt.write(f"{category},#genre#\n")
             if category in channels:
                 for channel_name in channel_list:
-                    if channel_name in channels[category]:                    
-                        for url in channel_name:                            
-                            f_txt.write(f"{channel_name},{channel_url}\n")
+                    if channel_name in channels[category]: 
+                        f_txt.write(f"{channel_name},{channel_url}\n")

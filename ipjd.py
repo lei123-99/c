@@ -193,6 +193,19 @@ if __name__ == "__main__":
     all_channels = OrderedDict()
     matched_channels = match_channels(template_channels, all_channels)
 
+ with open("live.txt", "w", encoding="utf-8") as f_txt:
+        for category, channel_list in template_channels.items():
+            f_txt.write(f"{category},#genre#\n")
+            if category in channels:
+                for channel_name in channel_list:                   
+                    filtered_urls = []                    
+                    if url and channels[category][channel_name]:
+                        filtered_urls.append(url)
+                        written_urls.add(url)                            
+                        f_txt.write(f"{channel_name},{new_url}\n")
+
+            f_txt.write("\n")
+
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')
     for result in results:

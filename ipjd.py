@@ -195,6 +195,24 @@ def natural_key(string):
 
 results.sort(key=natural_key)
 
+def filter_source_urls(template_file):
+    template_channels = parse_template(template_file)
+    all_channels = OrderedDict()
+    for category, channel_list in channels.items():
+        if category in all_channels:
+            all_channels[category].extend(channel_list)
+        else:
+            all_channels[category] = channel_list
+
+    matched_channels = match_channels(template_channels, all_channels)
+
+    return matched_channels, template_channels
+
+
+if __name__ == "__main__":
+    template_file = "d.txt"
+    channels, template_channels = filter_source_urls(template_file)    
+
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')
     for result in results:
@@ -215,24 +233,6 @@ with open("iptv.txt", 'w', encoding='utf-8') as file:
 with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as file:
     data = in_file.read()
     file.write(data)
-
-def filter_source_urls(template_file):
-    template_channels = parse_template(template_file)
-    all_channels = OrderedDict()
-    for category, channel_list in channels.items():
-        if category in all_channels:
-            all_channels[category].extend(channel_list)
-        else:
-            all_channels[category] = channel_list
-
-    matched_channels = match_channels(template_channels, all_channels)
-
-    return matched_channels, template_channels
-
-
-if __name__ == "__main__":
-    template_file = "d.txt"
-    channels, template_channels = filter_source_urls(template_file)    
 
 with open("live.txt", "w", encoding="utf-8") as f_txt:
        for category, channel_list in template_channels.items():

@@ -236,6 +236,7 @@ with open(f'df.txt', 'r', encoding='utf-8') as in_file,open(f'iptv.txt', 'a') as
 
 with open("live.txt", "w", encoding="utf-8") as f_txt:
        for category, channel_list in template_channels.items():
+           channel_name, channel_url = result.split(',')
             f_txt.write(f"{category},#genre#\n")
             if category in channels:
                 for channel_name in channel_list:

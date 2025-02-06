@@ -157,7 +157,7 @@ with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'w') a
             if data and not data.startswith("#"):
                 if "#genre#" in data:
                     new_file.write('line + \n')   
-                else
+                else:
                     for result in results:
                         channel_name, channel_url = result.split(',')
                             if data == channel_name:

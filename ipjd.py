@@ -101,9 +101,6 @@ for ip_part, port, option in unique_configs:
     status_thread.join()
     all_valid_ips.extend(valid_ips)
 
-for ip in all_valid_ips:
-    print(ip)
-
 import time
 import os
 import requests

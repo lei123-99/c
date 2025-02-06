@@ -148,10 +148,49 @@ for url in valid_urls:
     except:
         continue
 
-def natural_key(string):
-    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', string)]
+channels = []
 
-results.sort(key=natural_key)
+for result in results:
+    line = result.strip()
+    if result:
+        channel_name, channel_url = result.split(',')
+        channels.append((channel_name, channel_url))
+
+def parse_template(template_file):
+    template_channels = OrderedDict()
+    current_category = None
+
+    with open(template_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                if "#genre#" in line:
+                    current_category = line.split(",")[0].strip()
+                    template_channels[current_category] = []
+                elif current_category:
+                    channel_name = line.split(",")[0].strip()
+                    template_channels[current_category].append(channel_name)
+
+    return template_channels
+
+def match_channels(template_channels, all_channels):
+    matched_channels = OrderedDict()
+
+    for category, channel_list in template_channels.items():
+        matched_channels[category] = OrderedDict()
+        for channel_name in channel_list:
+            for online_category, online_channel_list in all_channels.items():
+                for online_channel_name, online_channel_url in online_channel_list:
+                    if channel_name == online_channel_name:
+                        matched_channels[category].setdefault(channel_name, []).append(online_channel_url)
+
+    return matched_channels
+    
+if __name__ == "__main__":
+    template_file = "d.txt"
+    template_channels = parse_template(template_file)
+    all_channels = OrderedDict()
+    matched_channels = match_channels(template_channels, all_channels)
 
 with open("iptv.txt", 'w', encoding='utf-8') as file:
     file.write('央视频道,#genre#\n')

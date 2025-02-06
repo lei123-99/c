@@ -193,7 +193,7 @@ if __name__ == "__main__":
     all_channels = OrderedDict()
     matched_channels = match_channels(template_channels, all_channels)
 
- with open("live.txt", "w", encoding="utf-8") as f_txt:
+with open("live.txt", "w", encoding="utf-8") as f_txt:
     for category, channel_list in template_channels.items():
         f_txt.write(f"{category},#genre#\n")
         if category in channels:

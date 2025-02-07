@@ -18,7 +18,7 @@ jobs:
           python-version: 3.x          
 
       - name: Install dependencies
-        run: pip install opencv-python requests
+        run: pip install selenium requests futures eventlet
 
       - name: Run IPJD
         run: python ${{ github.workspace }}/ipjd.py

@@ -7,9 +7,12 @@ import threading
 import eventlet
 
 urls = [
-"http://61.220.147.1:808",
-"http://60.220.147.1:808",
-"http://110.183.49.1:808"
+"http://111.8.242.1:9999",
+"http://112.234.21.1:9901",
+"http://125.42.151.1:9901",
+"http://219.154.241.1:9901",
+"http://221.13.235.1:9901",
+"http://221.193.168.1:9901"
     ]
 
 def modify_urls(url):
@@ -19,7 +22,7 @@ def modify_urls(url):
     base_url = url[:ip_start_index]  # http:// or https://
     ip_address = url[ip_start_index:ip_end_index]
     port = url[ip_end_index:]
-    ip_end = "/ZHGXTV/Public/json/live_interface.txt"
+    ip_end = "/iptv/live/1000.json?key=txiptv"
     for i in range(1, 256):
         modified_ip = f"{ip_address[:-1]}{i}"
         modified_url = f"{base_url}{modified_ip}{port}{ip_end}"
@@ -77,25 +80,32 @@ for url in valid_urls:
 for url in valid_urls:
     try:
         # 发送GET请求获取JSON文件，设置超时时间为0.5秒
+        ip_start_index = url.find("//") + 2
+        ip_dot_start = url.find(".") + 1
+        ip_index_second = url.find("/", ip_dot_start)
+        base_url = url[:ip_start_index]  # http:// or https://
+        ip_address = url[ip_start_index:ip_index_second]
+        url_x = f"{base_url}{ip_address}"
+
         json_url = f"{url}"
         response = requests.get(json_url, timeout=0.5)
-        json_data = response.content.decode('utf-8')
+        json_data = response.json()
 
         try:
-            # 按行分割数据
-            lines = json_data.split('\n')
-            for line in lines:
-                line = line.strip()
-                if line:
-                    name, channel_url = line.split(',',1)
-                    urls = channel_url.split('/', 3)
-                    url_data = json_url.split('/', 3)
-                    if len(urls) >= 4:
-                        urld = (f"{urls[0]}//{url_data[2]}/{urls[3]}")
+            # 解析JSON文件，获取name和url字段
+            for item in json_data['data']:
+                if isinstance(item, dict):
+                    name = item.get('name')
+                    urlx = item.get('url')
+                    if ',' in urlx:
+                        urlx=f"aaaaaaaa"
+                    #if 'http' in urlx or 'udp' in urlx or 'rtp' in urlx:
+                    if 'http' in urlx:
+                        urld = f"{urlx}"
                     else:
-                        urld = (f"{urls[0]}//{url_data[2]}")
+                        urld = f"{url_x}{urlx}"
 
-                    if name and urld:
+                    if name and urlx:
                         # 删除特定文字
                         name = name.replace("cctv", "CCTV")
                         name = name.replace("中央", "CCTV")
@@ -139,7 +149,7 @@ for url in valid_urls:
                         name = name.replace("CCTV5+体育赛视", "CCTV5+")
                         name = name.replace("CCTV5+体育赛事", "CCTV5+")
                         name = name.replace("CCTV5+体育", "CCTV5+")
-                        if "udp://" not in urld:
+                        if "txiptv" in urld:
                             results.append(f"{name},{urld}")
         except:
             continue

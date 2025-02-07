@@ -7,7 +7,10 @@ import threading
 import eventlet
 
 urls = [
-"http://60.220.147.1:808"
+"http://60.220.147.1:808",
+"http://110.183.51.228:808",
+"http://1.70.14.26:808",
+"http://110.181.106.68:8081",
     ]
 
 def modify_urls(url):

@@ -8,7 +8,8 @@ import eventlet
 
 urls = [
 "http://60.220.147.1:808",
-"http://110.183.49.1:808",
+"http://60.220.147.1:808",
+"http://110.183.49.1:808"
     ]
 
 def modify_urls(url):

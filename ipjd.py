@@ -101,9 +101,6 @@ for ip_part, port, option in unique_configs:
     status_thread.join()
     all_valid_ips.extend(valid_ips)
 
-for ip in all_valid_ips:
-    print(ip)
-                    
 #生成节目列表 省份运营商.txt
 rtp_filename = f'rtp/山西_联通.txt'
 txt_filename = f'iptv.txt'

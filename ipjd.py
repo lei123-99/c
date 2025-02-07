@@ -8,8 +8,9 @@ import eventlet
 
 urls = [
 "http://60.220.147.1:808",
-"http://110.183.49.1:808",
-    ]
+"http://110.183.49.1:808"
+    
+]
 
 def modify_urls(url):
     modified_urls = []
@@ -28,7 +29,7 @@ def modify_urls(url):
 
 def is_url_accessible(url):
     try:
-        response = requests.get(url, timeout=1)
+        response = requests.get(url, timeout=0.5)
         if response.status_code == 200:
             return url
     except requests.exceptions.RequestException:

@@ -19,7 +19,7 @@ jobs:
           
       - name: Install dependencies
         run: pip install selenium requests futures eventlet     
-       - name: Install dependencies
+      - name: Install dependencies
         run: pip install opencv-python requests
         
       - name: Run IPJD

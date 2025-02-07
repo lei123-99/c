@@ -148,7 +148,7 @@ for url in valid_urls:
 rtp_filename = f'mb.txt'
 txt_filename = f'itv.txt'
 
-with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'wb') as new_file:
+with open(rtp_filename, 'r', encoding='utf-8') as file,open(txt_filename, 'w') as new_file:
     for data in file:
         data = data.strip()
         if data and not data.startswith("#"):

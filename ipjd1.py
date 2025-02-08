@@ -30,7 +30,7 @@ def modify_urls(url):
 
 def is_url_accessible(url):
     try:
-        response = requests.get(url, timeout=1)
+        response = requests.get(url, timeout=5)
         if response.status_code == 200:
             return url
     except requests.exceptions.RequestException:
@@ -59,7 +59,7 @@ urls = set(x_urls)  # 去重得到唯一的URL列表
 
 valid_urls = []
 #   多线程获取可用url
-with concurrent.futures.ThreadPoolExecutor(max_workers=50) as executor:
+with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
     futures = []
     for url in urls:
         url = url.strip()

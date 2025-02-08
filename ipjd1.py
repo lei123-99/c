@@ -59,7 +59,7 @@ urls = set(x_urls)  # 去重得到唯一的URL列表
 
 valid_urls = []
 #   多线程获取可用url
-with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
+with concurrent.futures.ThreadPoolExecutor(max_workers=50) as executor:
     futures = []
     for url in urls:
         url = url.strip()

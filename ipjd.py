@@ -102,7 +102,7 @@ for url in valid_urls:
                     else:
                         urld = f"{url_x}{urlx}"
 
-                    if name and urlx:
+                    if name and urld:
                         # 删除特定文字
                         name = name.replace("cctv", "CCTV")
                         name = name.replace("中央", "CCTV")

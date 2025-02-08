@@ -19,6 +19,8 @@ jobs:
 
       - name: Install dependencies
         run: pip install selenium requests futures eventlet
+      - name: Install dependencies
+        run: pip install translate requests
 
       - name: Run IPJD
         run: python ${{ github.workspace }}/ipjd1.py

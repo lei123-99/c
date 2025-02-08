@@ -87,7 +87,7 @@ for url in valid_urls:
             for line in lines:
                 line = line.strip()
                 if line:
-                    name, channel_url = line.split(',')
+                    name, channel_url = line.split(',',1)
                     urls = channel_url.split('/', 3)
                     url_data = json_url.split('/', 3)
                     if len(urls) >= 4:

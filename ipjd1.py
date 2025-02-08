@@ -30,7 +30,7 @@ def is_url_accessible(url):
     try:
         response = requests.get(url, timeout=0.5)
         if response.status_code == 200:
-            return url
+        return url
     except requests.exceptions.RequestException:
         pass
     return None

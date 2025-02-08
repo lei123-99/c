@@ -76,8 +76,8 @@ for url in valid_urls:
 for url in valid_urls:
     # 发送GET请求获取JSON文件，设置超时时间为0.5秒        
     json_url = f'{url}'
-    response = requests.get(json_url, timeout=0.5)
-    json_data = response.content.decode('utf-8')
+    res = requests.get(json_url, timeout=0.5)
+    json_data = res.content.decode('utf-8')
 
     try:
         # 按行分割数据

@@ -146,11 +146,7 @@ for url in valid_urls:
             continue
     except:
         continue
-for result in results:
-    line = result.strip()
-    if result:
-        channel_name, channel_url = result.split(',')
-        channels.append((channel_name, channel_url))
+for result in results:    
     print(result)
 rtp_filename = f'mb.txt'
 txt_filename = f'itv.txt'

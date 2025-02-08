@@ -7,8 +7,6 @@ import threading
 import eventlet
 
 urls = [
-"http://111.8.242.1:9999",
-"http://123.160.241.1:9901",
 "http://110.183.49.1:808",
 "http://60.220.147.1:808"
     ]
@@ -82,7 +80,6 @@ for url in valid_urls:
         response = requests.get(json_url, timeout=0.5)
         json_data = response.content.decode('utf-8')
 
-        try:
         # 按行分割数据
         lines = json_data.split('\n')
         for line in lines:

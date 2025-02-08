@@ -7,8 +7,6 @@ import threading
 import eventlet
 
 urls = [
-"http://111.8.242.1:9999",
-"http://123.160.241.1:9901",
 "http://110.183.49.1:808",
 "http://60.220.147.1:808"
     ]
@@ -88,7 +86,7 @@ for url in valid_urls:
             for line in lines:
                 line = line.strip()
                 if line:
-                    name, channel_url = line.split(',',1)
+                    name, channel_url = line.split(',')
                     urls = channel_url.split('/', 3)
                     url_data = json_url.split('/', 3)
                     if len(urls) >= 4:

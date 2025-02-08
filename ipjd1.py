@@ -35,8 +35,6 @@ def is_url_accessible(url):
         pass
     return None
 
-results = []
-
 x_urls = []
 for url in urls:  # 对urls进行处理，ip第四位修改为1，并去重
     url = url.strip()
@@ -72,12 +70,15 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
 
 for url in valid_urls:
     print(url)
+
+results = []
+
 # 遍历网址列表，获取JSON文件并解析
 for url in valid_urls:
     try:
         # 发送GET请求获取JSON文件，设置超时时间为0.5秒        
         json_url = f"{url}"
-        response = requests.get(json_url, timeout=5)
+        response = requests.get(json_url, timeout=0.5)
         json_data = response.content.decode('utf-8')
 
         try:

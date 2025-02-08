@@ -142,7 +142,7 @@ for url in valid_urls:
                             results.append(f"{name},{urld}")
         except:
             continue
-    except requests.exceptions.RequestException:
+    except:
         continue
 
 rtp_filename = f'mb.txt'

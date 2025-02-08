@@ -73,7 +73,7 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
             valid_urls.append(result)
 
 for url in valid_urls:
-    print(url)
+    #print(url)
 # 遍历网址列表，获取JSON文件并解析
     try:
         # 发送GET请求获取JSON文件，设置超时时间为0.5秒

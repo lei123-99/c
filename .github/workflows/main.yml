@@ -1,35 +1,35 @@
-名称：ZB
+name: zb
 
-在：
-  workflow_dispatch：  
-      分支：
-        - 主要的
-工作：
-  建造：
-    运行：ubuntu-latest
+on:
+  workflow_dispatch:  
+      branches:
+        - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-    步骤：
-      - 名称：结帐代码
-        用途：Action/Checkout@V2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - 名称：设置python
-        用途：action/setup-python@v2
-        和：
-          python-version：3.x          
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x          
 
-      - 名称：安装依赖项
-        运行：pip安装硒请求期货eventlet
+      - name: Install dependencies
+        run: pip install selenium requests futures eventlet
 
-      - 名称：运行ipjd
-        运行：python $ {      { github.workspace }      } /ipjd1.py
+      - name: Run IPJD
+        run: python ${{ github.workspace }}/ipjd1.py
     
-      -名称：提交更改
-        运行：|
-          git config-local user.email“ahua@github.com”
-          git config -local user.name“ahua”
-          如果[ -n“ $（git- percerain）”;然后
-            git提交-am“自动更新”
-            git推
-            别的
-              回声“未检测到的变化，跳过提交。”
+      - name: 提交更改
+        run: |
+          git config --local user.email "ahua@github.com"
+          git config --local user.name "ahua"
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -am "Automatic update"
+            git push
+            else
+              echo "No changes detected, skipping commit."
             fi

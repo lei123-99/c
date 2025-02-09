@@ -1,0 +1,39 @@
+Python Python Python依赖性，运行测试和皮棉
+＃有关更多信息
+
+名称：Python应用程序
+
+在：
+  推：
+    分支：[       “ 主要的”       这是给出的
+  pull_request：
+    分支：[         “ main”         这是给出的
+
+许可：
+  内容：阅读
+
+工作：
+  建造：
+
+    运行：ubuntu-latest
+
+    步骤：
+    -用途：操作/结帐@v4
+    -名称：设置python 3.10
+      用途：action/setup-python@v3
+      和：
+        Python-version：“ 3.10”
+    -名称：安装依赖项
+      运行：|
+        python -m pip安装 -升级 -pip
+        pip安装薄片pytest
+        如果[ -f需求.txt ] ;然后pipinstall -r unigess.txt; fi
+    -名称：用薄片棉绒8
+      运行：|
+        ＃如果有 python语法错误或未定义的名称，请停止构建
+        flake8。 -计数 -选项= e9，f63，f7，f82-示出 -统计数据--
+        ＃零零将所有错误视为警告。 github编辑器的宽度为127个字符
+        flake8。 -计数 -零 -零 -最大复杂性= 10 -max -line -length = 127-统计学
+    -姓名：用pytest进行测试
+      运行：|
+        pytest

@@ -144,6 +144,8 @@ for url in valid_urls:
             continue
     except:
         print(2)
+        continue
+    print（results）
 
 rtp_filename = f'mb.txt'
 txt_filename = f'itv.txt'

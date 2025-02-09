@@ -25,8 +25,8 @@
     
       -名称：提交更改
         运行：|
-          git config-local user.email“ lei123-99@github.com”
-          git config -local user.name“ lei123”
+          git config-local user.email“ahua@github.com”
+          git config -local user.name“ahua”
           如果[ -n“ $（git- percerain）”;然后
             git提交-am“自动更新”
             git推

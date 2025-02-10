@@ -1,4 +1,14 @@
 地方频道,#genre#
-长治综合频道,rtmp://live.njgdmm.com/changzhi/cztv1#http://live.njgdmm.com/changzhi/cztv1.m3u8
-长治公共频道,rtmp://live.njgdmm.com/changzhi/cztv2#http://live.njgdmm.com/changzhi/cztv2.m3u8
-武乡新闻综合,http://uzoiczhh.live.sxmty.com/live/hls/0d41f1480c4042d49927858f01fde707/53130407737b417b9a6259b57246bae3.m3u8#http://60.220.198.84:81/0.m3u8
+河北卫视,http://y8.318.run/php/hebei.php?id=hbws
+河北经济,http://y8.318.run/php/hebei.php?id=hbjj
+河北农民,http://y8.318.run/php/hebei.php?id=hbnm
+河北都市,http://y8.318.run/php/hebei.php?id=hbds
+河北影视,http://y8.318.run/php/hebei.php?id=hbys
+河北少儿,http://y8.318.run/php/hebei.php?id=hbse
+河北公共,http://y8.318.run/php/hebei.php?id=hbgg
+石家庄新闻,http://nn.7x9d.cn/石家庄.php?id=4
+石家庄城市,http://nn.7x9d.cn/石家庄.php?id=5
+石家庄娱乐,http://nn.7x9d.cn/石家庄.php?id=6
+鹿泉一套,http://y8.318.run/php/jy.php?id=lq1
+鹿泉二套,http://y8.318.run/php/jy.php?id=lq2
+

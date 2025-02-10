@@ -28,7 +28,7 @@ def modify_urls(url):
 
 def is_url_accessible(url):
     try:
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, timeout=0.5)
         if response.status_code == 200:
             return url
     except requests.exceptions.RequestException:
@@ -78,7 +78,7 @@ for url in valid_urls:
         # 发送GET请求获取JSON文件，设置超时时间为0.5秒
         json_url = f"{url}"
         response = requests.get(json_url, timeout=0.5)
-        json_data = response.json()
+        json_data = response.content.decode('utf-8')
 
         try:
             # 按行分割数据
@@ -141,10 +141,8 @@ for url in valid_urls:
                         if "/hls/" in urld:
                             results.append(f"{name},{urld}")
         except:
-            print(1)
             continue
     except:
-        print(2)
         continue
 
 rtp_filename = f'mb.txt'

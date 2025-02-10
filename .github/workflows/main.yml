@@ -1,9 +1,12 @@
 name: zb
 
 on:
+  schedule:
+    - cron: '0 * * * *'  # 每小时触发一次
   workflow_dispatch:  
       branches:
         - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,6 +33,6 @@ jobs:
           if [ -n "$(git status --porcelain)" ]; then
             git commit -am "Automatic update"
             git push
-            else
-              echo "No changes detected, skipping commit."
-            fi
+          else
+            echo "No changes detected, skipping commit."
+          fi

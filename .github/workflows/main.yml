@@ -2,7 +2,7 @@ name: zb
 
 on:
   schedule:
-    - cron: '0 * * * *'  # 每小时触发一次
+    - cron: '*/10 * * * *'  # 每10分钟触发一次
   workflow_dispatch:  
       branches:
         - main
@@ -23,11 +23,11 @@ jobs:
       - name: Install dependencies
         run: pip install selenium requests futures eventlet
 
-      - name: Run IPJD
-        run: python ${{ github.workspace }}/ipjd.py
-
       - name: Run IPJD1
         run: python ${{ github.workspace }}/ipjd1.py
+
+      - name: Run IPJD
+        run: python ${{ github.workspace }}/ipjd.py
     
       - name: 提交更改
         run: |

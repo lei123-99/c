@@ -2,7 +2,7 @@ name: zb
 
 on:
   schedule:
-    - cron: '0 */8 * * *'  # 每 8 小时触发一次
+    - cron: '0 21 * * *'
   workflow_dispatch:  
       branches:
         - main

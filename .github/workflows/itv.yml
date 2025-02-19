@@ -1,0 +1,38 @@
+name: itv
+
+on:
+  schedule:
+    - cron: '0 6,18 * * *'
+  workflow_dispatch:  
+      branches:
+        - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x          
+
+      - name: Install dependencies
+        run: pip install selenium requests futures eventlet
+
+      - name: Run IPJD1
+        run: python ${{ github.workspace }}/ipjd1.py
+    
+      - name: 提交更改
+        run: |
+          git config --local user.email "ahua@github.com"
+          git config --local user.name "ahua"
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -am "Automatic update"
+            git push
+          else
+            echo "No changes detected, skipping commit."
+          fi

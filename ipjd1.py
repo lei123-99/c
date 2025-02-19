@@ -142,10 +142,8 @@ for url in valid_urls:
                         if "/hls/" in urld:
                             results.append(f"{name},{urld}")
         except:
-             print(1)
             continue
     except:
-         print(2)
         continue
 
 rtp_filename = f'mb.txt'

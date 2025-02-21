@@ -1,4 +1,4 @@
-name: zb
+name: iptv
 
 on:
   schedule:
@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: pip install selenium requests futures eventlet
 
-      - name: Run IPJD1
-        run: python ${{ github.workspace }}/ipjd1.py
+      - name: Run IPJD
+        run: python ${{ github.workspace }}/ipjd.py
 
       #- name: Run IPJD
         #run: python ${{ github.workspace }}/ipjd.py

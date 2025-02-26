@@ -7,6 +7,7 @@ import threading
 import eventlet
 
 urls = [
+"http://111.8.242.107:9999",
 "http://223.72.123.1:9901",
 "http://106.46.147.149:10443",
 "http://101.66.199.39:9901",

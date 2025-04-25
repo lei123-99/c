@@ -172,5 +172,7 @@ CCTV17,http://113.57.20.158:9901/tsfile/live/1047_1.m3u8?key=txiptv&playlive=1&a
 石家庄新闻,http://nn.7x9d.cn/石家庄.php?id=4
 石家庄城市,http://nn.7x9d.cn/石家庄.php?id=5
 石家庄娱乐,http://nn.7x9d.cn/石家庄.php?id=6
+鹿泉一套,https://jwcdnqx.hebyun.com.cn/live/luquanyi/1500k/tzwj_video.m3u8?zhebd
+鹿泉二套,https://jwcdnqx.hebyun.com.cn/live/luquaner/1500k/tzwj_video.m3u8?zhebd
 鹿泉一套,http://y8.318.run/php/jy.php?id=lq1
 鹿泉二套,http://y8.318.run/php/jy.php?id=lq2
